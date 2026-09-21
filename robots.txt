@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://REPLACE-WITH-YOUR-DOMAIN.vercel.app/sitemap.xml
+Sitemap: https://essencechildcare.vercel.app/sitemap.xml
