@@ -1,15 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/staff",
+      "destination": "https://claude.ai/artifact/HSseMm9wpHufQLANvRNcmY",
+      "permanent": false
+    }
+  ],
   "headers": [
-"redirects": [
-  {
-    "source": "/staff",
-    "destination": "https://claude.ai/artifact/HSseMm9wpHufQLANvRNcmY",
-    "permanent": false
-  }
-]
-
     {
       "source": "/img/(.*)",
       "headers": [
