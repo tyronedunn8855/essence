@@ -410,6 +410,7 @@ ol.steps li span{font-size:.96rem}
 .value p{margin:.1rem 0 0; font-size:.96rem}
 
 /* ---------------- meals strip ---------------- */
+img[src*="chef-smile"],img[src*="sensory-table"]{object-position:50% 18%}
 .mealstrip{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
 @media (max-width:760px){ .mealstrip{grid-template-columns:1fr} }
 .meal{position:relative; border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:4/5}
@@ -738,7 +739,7 @@ html{color-scheme:light dark}
   <div class="wrap rail-wrap">
     <div class="rail">
       <a class="rail-item" href="#/programs">
-        <span class="arch"><img src="img/infant-cribs.jpg?v=3" alt="The ECU infant room with cribs and soft floor play" loading="eager"></span>
+        <span class="arch"><img src="img/infant-nook.jpg?v=4" alt="The ECU infant nook with a rocking chair, soft blocks and floor mats under a rainbow window" loading="eager"></span>
         <b>Infant Room</b><small style="color:var(--teal)">4 wks &ndash; 18 mo</small>
       </a>
       <a class="rail-item" href="#/programs">
@@ -869,6 +870,8 @@ html{color-scheme:light dark}
         <figure class="meal" style="margin:0"><img src="img/meal-rice.jpg?v=3" alt="Chicken fried rice with vegetables and baked nuggets in children's bowls" loading="lazy"><figcaption class="cap">Chicken fried rice and baked nuggets</figcaption></figure>
         <figure class="meal" style="margin:0"><img src="img/meal-quesadilla.jpg?v=3" alt="Ham and cheese quesadillas cut into triangles" loading="lazy"><figcaption class="cap">Ham and cheese quesadillas</figcaption></figure>
         <figure class="meal" style="margin:0"><img src="img/meal-pancakes.jpg?v=3" alt="Pancakes topped with blackberries and blueberries with banana" loading="lazy"><figcaption class="cap">Pancakes, berries and banana</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/snack-bagels.jpg?v=4" alt="Bagels with cream cheese and sprinkles, apple slices and blueberries in colorful bowls" loading="lazy"><figcaption class="cap">Bagels, apples and blueberries</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/snack-yogurt.jpg?v=4" alt="Yogurt with strawberries and blueberries in green bowls" loading="lazy"><figcaption class="cap">Yogurt with fresh berries</figcaption></figure>
       </div>
     </div>
   </section>
@@ -942,7 +945,7 @@ html{color-scheme:light dark}
           <div class="value"><span class="dot" style="background:var(--coral)"></span><div><b>Community</b><p>We serve Milwaukee's north and west sides, with hours built around how families really work.</p></div></div>
         </div>
         <div class="mosaic" style="grid-auto-rows:170px">
-          <a class="w2 t2" href="#/gallery"><img src="img/chef-play.jpg?v=3" alt="A child in a chef hat at the dramatic play area" loading="lazy"></a>
+          <a class="w2 t2" href="#/gallery"><img src="img/sensory-table.jpg?v=4" alt="Children playing with foam dinosaurs at an outdoor water table" loading="lazy"></a>
           <a class="w2" href="#/gallery"><img src="img/g-cubbies.jpg?v=3" alt="A wall of wooden cubbies, one for every child" loading="lazy"></a>
           <a class="w2" href="#/gallery"><img src="img/art-collage.jpg?v=3" alt="A child placing tissue paper squares on a collage at the art table" loading="lazy"></a>
         </div>
@@ -1028,7 +1031,7 @@ html{color-scheme:light dark}
       <div class="mosaic" style="grid-auto-rows:180px">
         <a class="w2 t2" href="#/gallery"><img src="img/little-hands.jpg?v=3" alt="Toddlers practising crayon grip at a classroom table" loading="lazy"></a>
         <a class="w2" href="#/gallery"><img src="img/blocks.jpg?v=3" alt="A toddler stacking soft numbered blocks into a tower" loading="lazy"></a>
-        <a class="w2" href="#/gallery"><img src="img/chef-play.jpg?v=3" alt="A toddler in a chef hat and apron at the dramatic play area" loading="lazy"></a>
+        <a class="w2" href="#/gallery"><img src="img/chef-smile.jpg?v=4" alt="A smiling toddler in a chef hat and checked apron" loading="lazy"></a>
       </div>
     </div>
   </section>
@@ -1275,7 +1278,7 @@ html{color-scheme:light dark}
         <div class="note" style="margin-top:1.4rem"><b>Shifts available.</b> ECU runs 6:00 AM to 12:00 AM Monday through Friday, so there are openings for early morning, midday and evening availability.</div>
       </div>
       <div class="matted" style="--mat:var(--green)">
-        <img src="img/chef-play.jpg?v=3" alt="A child in a chef hat at the ECU dramatic play area" loading="lazy">
+        <img src="img/play-wall.jpg?v=4" alt="Framed letters spelling PLAY under the Essence sign: this is where the fun stuff happens" loading="lazy">
       </div>
     </div>
   </section>
@@ -1576,19 +1579,27 @@ html{color-scheme:light dark}
     ["img/preschool-room.jpg?v=3",  "Preschool room, set up for the morning","rooms"],
     ["img/little-hands.jpg?v=3",    "Pencil and crayon grip practice for our one year olds","play"],
     ["img/infant-room.jpg?v=3",     "Infant room with cribs and a rocking chair","rooms"],
+    ["img/sensory-table.jpg?v=4",   "Water table play with foam dinosaurs","play"],
+    ["img/infant-nook.jpg?v=4",     "Infant nook with a rocker, soft blocks and floor mats","rooms"],
     ["img/toddler-room.jpg?v=3",    "Toddler room, building table and instrument shelf","rooms"],
     ["img/dramatic-play.jpg?v=3",   "Dramatic play: kitchen, dress-up and pretend","play"],
     ["img/meal-breakfast.jpg?v=3",  "Breakfast: pancakes, eggs, sausage and fruit","meals"],
     ["img/meal-rice.jpg?v=3",       "Chicken fried rice and baked nuggets at lunch","meals"],
+    ["img/pretend-kitchen.jpg?v=4", "Pretend kitchen and a dress-up rack of career costumes","play"],
+    ["img/snack-bagels.jpg?v=4",    "Bagels, apples and blueberries at snack time","meals"],
     ["img/infant-cribs.jpg?v=3",    "Infant sleeping area and floor play","rooms"],
     ["img/g-cubbies.jpg?v=3",       "Cubbies and the rainbow window at arrival","building"],
     ["img/welcome-easel.jpg?v=3",   "Welcome to Essence Childcare","play"],
+    ["img/music-shelf.jpg?v=4",     "Rhythm instruments, puzzles and trucks on the preschool shelf","play"],
+    ["img/infant-shelf.jpg?v=4",    "Infant toy shelf with music, stacking and cause-and-effect toys","rooms"],
     ["img/blocks.jpg?v=3",          "Stacking practice in the toddler room","play"],
     ["img/meal-pancakes.jpg?v=3",   "Pancakes with berries and banana for breakfast","meals"],
     ["img/art-collage.jpg?v=3",     "Tissue paper collage at the art table","play"],
+    ["img/snack-yogurt.jpg?v=4",    "Yogurt with strawberries and blueberries","meals"],
+    ["img/play-wall.jpg?v=4",       "This is where the fun stuff happens","building"],
     ["img/bath-ocean.jpg?v=3",      "The ocean bathroom","building"],
     ["img/meal-quesadilla.jpg?v=3", "Ham and cheese quesadillas, cut for small hands","meals"],
-    ["img/chef-play.jpg?v=3",       "Chef of the day in the dramatic play area","play"],
+    ["img/chef-smile.jpg?v=4",      "Chef of the day in the dramatic play area","play"],
     ["img/bath-space.jpg?v=3",      "The space bathroom, with a step stool for little ones","building"],
     ["img/enrolling-flyer.jpg?v=3", "Now enrolling: schedule your private tour","building"]
   ];
@@ -1621,8 +1632,10 @@ html{color-scheme:light dark}
     ["img/little-hands.jpg?v=3","Crayon grip practice",""],
     ["img/bath-ocean.jpg?v=3","The ocean bathroom",""],
     ["img/blocks.jpg?v=3","Stacking practice","w2"],
-    ["img/bath-space.jpg?v=3","The space bathroom",""],
-    ["img/welcome-easel.jpg?v=3","Welcome to Essence Childcare",""]
+    ["img/pretend-kitchen.jpg?v=4","Pretend kitchen and dress-up",""],
+    ["img/chef-smile.jpg?v=4","Chef of the day",""],
+    ["img/music-shelf.jpg?v=4","Rhythm instruments and puzzles",""],
+    ["img/infant-shelf.jpg?v=4","Infant toy shelf",""]
   ];
   var mos = $("#mosaic");
   if(mos){
