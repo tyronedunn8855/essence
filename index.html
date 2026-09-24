@@ -411,6 +411,60 @@ ol.steps li span{font-size:.96rem}
 
 /* ---------------- meals strip ---------------- */
 img[src*="chef-smile"],img[src*="sensory-table"]{object-position:50% 18%}
+/* ---------- visual upgrade: hero photo cluster ---------- */
+.hero-inner{justify-content:space-between; gap:40px}
+.hero-stack{position:relative; flex:0 0 400px; height:520px; display:none; margin-right:-10px}
+@media (min-width:1100px){ .hero-stack{display:block} .hero-card{max-width:600px} }
+.hero-stack .ph{
+  position:absolute; margin:0; background:#fff; padding:10px 10px 0; border-radius:22px;
+  box-shadow:0 26px 60px -18px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.4);
+  animation:floaty 7s ease-in-out infinite; will-change:transform
+}
+.hero-stack .ph img{display:block; width:100%; height:100%; object-fit:cover; border-radius:14px}
+.hero-stack .ph figcaption{font:800 .78rem/1 var(--font-display, inherit); color:var(--ink); padding:11px 4px 12px; letter-spacing:.02em}
+.hero-stack .ph.a{width:230px; height:300px; top:0; right:150px; --r:-7deg; z-index:2}
+.hero-stack .ph.b{width:210px; height:260px; top:62px; right:0; --r:6deg; z-index:3; animation-delay:-2.3s}
+.hero-stack .ph.c{width:250px; height:190px; top:335px; right:95px; --r:-2deg; z-index:4; animation-delay:-4.6s}
+.hero-stack .ph.a img,.hero-stack .ph.b img{height:calc(100% - 38px)}
+.hero-stack .ph.c img{height:calc(100% - 38px)}
+@keyframes floaty{0%,100%{transform:rotate(var(--r)) translateY(0)} 50%{transform:rotate(var(--r)) translateY(-12px)}}
+.hero-stack .blob{position:absolute; border-radius:50%; filter:blur(2px); opacity:.9; z-index:1}
+.hero-stack .blob.g{width:120px; height:120px; background:var(--gold); top:-22px; right:40px}
+.hero-stack .blob.t{width:86px; height:86px; background:var(--teal); bottom:20px; right:-14px}
+.hero-stack .blob.m{width:60px; height:60px; background:var(--magenta); top:230px; right:370px}
+.hero-stack .star{position:absolute; z-index:5; width:34px; height:34px; color:#FFD23F; animation:twinkle 3.2s ease-in-out infinite}
+.hero-stack .star.s1{top:490px; right:40px}
+.hero-stack .star.s2{top:-6px; right:360px; width:24px; height:24px; color:#fff; animation-delay:-1.4s}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0)} 50%{transform:scale(1.25) rotate(18deg)}}
+.hero-wash{background:
+    linear-gradient(180deg, rgba(6,16,38,.55) 0%, rgba(6,16,38,.3) 30%, rgba(6,16,38,.85) 88%, rgba(6,16,38,.97) 100%),
+    linear-gradient(100deg, rgba(6,16,38,.94) 0%, rgba(6,16,38,.7) 45%, rgba(106,61,163,.55) 78%, rgba(208,19,106,.5) 100%) !important}
+.hero-card h1 .hl{background:linear-gradient(90deg,#FFD23F,#FF8A3D 45%,#FF5FA2); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:none}
+
+/* ---------- photo marquee ---------- */
+.marquee{overflow:hidden; padding:8px 0 34px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{display:flex; gap:16px; width:max-content; animation:marq 60s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track a{flex:0 0 auto; width:230px; height:170px; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); transform:rotate(var(--t,0deg)); transition:transform .3s ease}
+.marquee-track a:nth-child(odd){--t:-1.5deg} .marquee-track a:nth-child(even){--t:1.5deg}
+.marquee-track a:hover{transform:rotate(0) scale(1.05)}
+.marquee-track img{width:100%; height:100%; object-fit:cover}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media (max-width:760px){ .marquee-track a{width:170px; height:130px} }
+
+/* ---------- tighter meal tiles, livelier cards ---------- */
+.meal{aspect-ratio:1/1}
+.fact{transition:transform .25s ease, box-shadow .25s ease}
+.fact:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+.fact .n{background:linear-gradient(90deg,var(--ink),var(--c)); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+/* ---------- scroll reveal (only when JS runs and motion is allowed) ---------- */
+.rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.8,.25,1)}
+.rv.in{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1; transform:none; transition:none}
+  .marquee-track,.hero-stack .ph,.hero-stack .star{animation:none}
+}
 .mealstrip{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
 @media (max-width:760px){ .mealstrip{grid-template-columns:1fr} }
 .meal{position:relative; border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:4/5}
@@ -714,7 +768,7 @@ html{color-scheme:light dark}
     <div class="wrap hero-inner">
       <div class="hero-card">
         <p class="eyebrow">Licensed childcare &middot; Milwaukee, WI</p>
-        <h1>Welcome to Essence of Childcare University</h1>
+        <h1>Welcome to <span class="hl">Essence</span> of Childcare University</h1>
         <p class="tag">Where safety, fun and learning collides.</p>
         <p class="intro">A safe, nurturing and engaging environment where children learn, play, build confidence and grow. Open from 6:00 AM until 12:00 AM, for families whose schedules do not fit anyone else's.</p>
         <ul class="hero-pills">
@@ -731,6 +785,13 @@ html{color-scheme:light dark}
             Call Us
           </a>
         </div>
+      </div>
+      <div class="hero-stack" aria-hidden="true">
+        <span class="blob g"></span><span class="blob t"></span><span class="blob m"></span>
+        <figure class="ph a"><img src="img/chef-smile.jpg?v=4" alt=""><figcaption>Chef of the day</figcaption></figure>
+        <figure class="ph b"><img src="img/sensory-table.jpg?v=4" alt=""><figcaption>Water table play</figcaption></figure>
+        <figure class="ph c"><img src="img/little-hands.jpg?v=3" alt=""><figcaption>Little hands, big progress</figcaption></figure>
+        <span class="star s1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg></span><span class="star s2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg></span>
       </div>
     </div>
   </div>
@@ -771,6 +832,10 @@ html{color-scheme:light dark}
       </div>
     </div>
   </section>
+
+  <div class="marquee" aria-label="Photos from inside the center">
+    <div class="marquee-track"><a href="#/gallery" tabindex="-1"><img src="img/chef-smile.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/infant-nook.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/snack-bagels.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/sensory-table.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/pretend-kitchen.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/blocks.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/music-shelf.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/meal-breakfast.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/play-wall.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/art-collage.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/infant-shelf.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/snack-yogurt.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/preschool-room.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/bath-ocean.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/chef-smile.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/infant-nook.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/snack-bagels.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/sensory-table.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/pretend-kitchen.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/blocks.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/music-shelf.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/meal-breakfast.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/play-wall.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/art-collage.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/infant-shelf.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/snack-yogurt.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/preschool-room.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/bath-ocean.jpg?v=3" alt="" loading="lazy"></a></div>
+  </div>
 
   <div class="hours-strip">
     <div class="rule"></div>
@@ -1954,6 +2019,23 @@ html{color-scheme:light dark}
   window.addEventListener("hashchange", function(){ show(routeName(), true); });
   show(routeName(), false);
 })();
+
+  /* scroll reveal */
+  (function(){
+    if(!('IntersectionObserver' in window)) return;
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    function arm(){
+      document.querySelectorAll('.fact,.cell,.meal,.sec-head,.split > div,.faq details,.contact-list .cl, #gal figure').forEach(function(n,i){
+        if(n.classList.contains('rv')) return;
+        var r = n.getBoundingClientRect();
+        if(r.top < innerHeight && r.bottom > 0) return;  // already on screen: leave visible
+        n.classList.add('rv'); n.style.transitionDelay = ((i%4)*70)+'ms'; io.observe(n);
+      });
+    }
+    window.addEventListener('hashchange', function(){ setTimeout(arm, 60); });
+    setTimeout(arm, 60);
+  })();
 </script>
 
 </body>
