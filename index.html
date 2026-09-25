@@ -465,6 +465,16 @@ img[src*="chef-smile"],img[src*="sensory-table"]{object-position:50% 18%}
   .rv{opacity:1; transform:none; transition:none}
   .marquee-track,.hero-stack .ph,.hero-stack .star{animation:none}
 }
+/* ---------- Drive QR section ---------- */
+.qr-split{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:clamp(28px,5vw,64px); align-items:center}
+@media (max-width:760px){ .qr-split{grid-template-columns:1fr} .qr-card{max-width:300px; margin-inline:auto} }
+.qr-card{background:#fff; border-radius:28px; padding:22px 22px 16px; box-shadow:var(--shadow-lg); text-align:center; transform:rotate(-2deg); border:6px solid transparent;
+  background-image:linear-gradient(#fff,#fff),linear-gradient(135deg,var(--teal),var(--gold),var(--green),var(--magenta),var(--violet)); background-origin:border-box; background-clip:padding-box,border-box}
+.qr-card img{display:block; width:100%; height:auto}
+.qr-scan{display:inline-block; margin-top:8px; font-weight:800; font-size:.8rem; letter-spacing:.05em; text-transform:uppercase; color:#0B1B3D}
+.qr-how{margin:1.1rem 0 0; padding:0; list-style:none; display:grid; gap:10px}
+.qr-how li{padding:12px 16px; border-radius:16px; background:var(--surface); border:1px solid var(--line); color:var(--ink-2)}
+.qr-how b{color:var(--ink)}
 .mealstrip{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
 @media (max-width:760px){ .mealstrip{grid-template-columns:1fr} }
 .meal{position:relative; border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:4/5}
@@ -1266,7 +1276,30 @@ html{color-scheme:light dark}
     </div>
   </section>
 
-  <section class="band tint">
+
+  <section class="band tint" id="drive">
+    <div class="wrap qr-split">
+      <div class="qr-card">
+        <img src="img/drive-qr.png?v=1" alt="QR code that opens the ECU Google Drive folder" width="490" height="490">
+        <span class="qr-scan">Scan with your phone camera</span>
+      </div>
+      <div>
+        <p class="eyebrow">Scan or tap</p>
+        <h2>ECU shared folder</h2>
+        <p class="lede" style="margin-top:.8rem">This code opens ECU&rsquo;s shared Google Drive folder, named &ldquo;ECU,&rdquo; where the center shares its documents with families.</p>
+        <ul class="qr-how">
+          <li><b>On a phone:</b> open your camera, point it at the code, then tap the link that appears.</li>
+          <li><b>Already on your phone?</b> Tap the button below instead.</li>
+          <li><b>Where it goes:</b> drive.google.com, the ECU folder. It opens in your browser or the Google Drive app. No account is needed to view it.</li>
+        </ul>
+        <div class="hero-btns" style="margin-top:1.3rem">
+          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1d3o6GZPsNqBLPWaUV7DurTGSaLdnvFW2?usp=drive_link" target="_blank" rel="noopener">Open the ECU folder</a>
+          <a class="btn btn-outline" href="img/drive-qr.png?v=1" download="ECU-folder-QR.png">Save the QR code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="band">
     <div class="wrap split" style="align-items:center">
       <div>
         <p class="eyebrow">After your visit</p>
@@ -1466,6 +1499,7 @@ html{color-scheme:light dark}
         <ul>
           <li><a href="#/tuition">Tuition</a></li>
           <li><a href="#/resources">Parent Resources</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1d3o6GZPsNqBLPWaUV7DurTGSaLdnvFW2?usp=drive_link" target="_blank" rel="noopener">ECU shared folder</a></li>
           <li><a href="#/gallery">Gallery</a></li>
           <li><a href="#/careers">Careers</a></li>
           <li><a href="#/privacy">Privacy Policy</a></li>
