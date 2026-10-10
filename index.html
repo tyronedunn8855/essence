@@ -16,10 +16,13 @@
 <meta property="og:image" content="https://essencechildcare.vercel.app/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Essence of Childcare University logo over the center storefront at 5644 W. Appleton Ave, Milwaukee">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Essence of Childcare University">
 <meta name="twitter:description" content="Licensed childcare in Milwaukee for ages 4 weeks through 7 years. Open Monday to Friday, 6:00 AM to 12:00 AM. Wisconsin Shares and private pay accepted, CACFP meals and diapers supplied. Schedule a tour at 5644 W. Appleton Ave.">
 <meta name="twitter:image" content="https://essencechildcare.vercel.app/og-image.jpg">
+<meta name="twitter:image:alt" content="The Essence of Childcare University logo over the center storefront at 5644 W. Appleton Ave, Milwaukee">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -738,6 +741,141 @@ html{color-scheme:light dark}
   font-weight:800; font-size:.9rem;
 }
 .skip:focus{left:0; text-decoration:none}
+
+/* ==========================================================================
+   QUALITY OF LIFE (Oct 2026): contrast, tap targets, text floor, focus,
+   page jump bar, back-to-top, open-now status, form fallback helpers.
+   No layout or palette redesign: text-on-colour shades are only deepened
+   where they fell under WCAG AA.
+   ========================================================================== */
+:root{
+  --teal-ink:#0A7482; --gold-ink:#8A5A00; --green-ink:#2D7A23;
+  --magenta-ink:#B5105C; --coral-ink:#C73D12; --violet-ink:#6A3DA3;
+  --btn-coral:#C73D12; --btn-teal:#0A7482;
+  --ink-3:#5B6889;
+  --hdr-h:76px; --jump-h:0px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --teal-ink:var(--teal); --gold-ink:var(--gold); --green-ink:var(--green);
+    --magenta-ink:var(--magenta); --coral-ink:var(--coral); --violet-ink:var(--violet);
+    --ink-3:#8E9DBE;
+  }
+}
+:root[data-theme="dark"]{
+  --teal-ink:var(--teal); --gold-ink:var(--gold); --green-ink:var(--green);
+  --magenta-ink:var(--magenta); --coral-ink:var(--coral); --violet-ink:var(--violet);
+  --ink-3:#8E9DBE;
+}
+img{height:auto}
+a{color:var(--teal-ink)}
+.eyebrow{color:var(--teal-ink); font-size:.76rem}
+.btn-primary,.hdr-cta,.callbar .c1{background:var(--btn-coral); box-shadow:0 10px 24px -10px var(--btn-coral)}
+.btn-teal,.callbar .c2{background:var(--btn-teal); box-shadow:0 10px 24px -10px var(--btn-teal)}
+.callbar .c1,.callbar .c2{box-shadow:none}
+.res-item .tagx{color:var(--gold-ink); font-size:.76rem}
+.clockbar-ticks{font-size:.75rem}
+.prog-age,.prow .badge{font-size:.75rem}
+.rail-item small{font-size:.75rem}
+.cl small{font-size:.75rem}
+table.fees th{font-size:.75rem}
+footer.site h4{font-size:.78rem}
+.fact .l{font-size:.8rem}
+
+/* focus: dark ring plus a white halo so it shows on cream and on navy */
+:focus-visible{outline:3px solid var(--teal-ink); outline-offset:2px; box-shadow:0 0 0 8px rgba(255,255,255,.9)}
+.hero :focus-visible,.banner :focus-visible,.cta-band :focus-visible,footer.site :focus-visible,.announce :focus-visible,.hours-strip :focus-visible{outline-color:#FFD23F; box-shadow:0 0 0 8px rgba(6,16,38,.85)}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--teal) 45%,transparent)}
+[tabindex="-1"]:focus{outline:none; box-shadow:none}
+
+/* header CTA stays visible until the mobile call bar takes over */
+@media (max-width:1180px) and (min-width:821px){ .hdr-cta{display:inline-flex; margin-left:0} .burger{order:2} }
+
+/* tap targets: 44px minimum on touch screens */
+.announce a{display:inline-flex; align-items:center; min-height:34px}
+.brand{min-height:48px}
+@media (pointer:coarse), (max-width:820px){
+  .announce a{min-height:44px}
+  .foot-grid ul{gap:0}
+  .foot-grid ul a{display:inline-flex; align-items:center; min-height:44px}
+  .socials a{width:46px; height:46px}
+  .filters button{min-height:44px}
+  .radios label{min-height:44px}
+  .res-item a,.note a,.cell p a{display:inline-block; padding-block:10px}
+}
+
+/* open-now status (regular weekly hours, computed in Milwaukee time) */
+.open-now{display:none; align-items:center; gap:7px; font-weight:800; font-size:.8rem; letter-spacing:.02em}
+.open-now.ready{display:inline-flex}
+.open-now i{width:9px; height:9px; border-radius:50%; background:#5DD04D; box-shadow:0 0 0 3px rgba(93,208,77,.25); flex:0 0 auto}
+.open-now.closed i{background:#FFC53D; box-shadow:0 0 0 3px rgba(255,197,61,.25)}
+.announce .open-now{color:#fff; padding-left:10px; border-left:1px solid rgba(255,255,255,.25)}
+@media (max-width:420px){ .announce .open-now{flex-basis:100%; justify-content:center; border-left:0; padding-left:0; margin-top:-4px} }
+.hours-strip .open-now{color:#fff; margin-top:14px; font-size:.9rem}
+.cl .open-now{color:var(--ink-2); font-size:.85rem; margin-top:4px}
+.cl .open-now.ready{display:flex}
+.open-now .reg{font-weight:600; opacity:.8; margin-left:3px}
+.announce .open-now .reg{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* page jump bar: a quick way around long pages on phones and tablets */
+.jumpbar{display:none}
+@media (max-width:980px){
+  /* fixed, and only slides out once the visitor has scrolled past the top,
+     so it never pushes the hero or its buttons down */
+  .jumpbar{
+    display:block; position:fixed; left:0; right:0; top:var(--hdr-h); z-index:55;
+    background:color-mix(in srgb, var(--surface) 96%, transparent);
+    backdrop-filter:saturate(1.6) blur(12px); border-bottom:1px solid var(--line);
+    transform:translateY(-110%); visibility:hidden;
+    transition:transform .22s ease, visibility 0s linear .22s;
+  }
+  .jumpbar.on{transform:none; visibility:visible; transition:transform .22s ease}
+  .jumpbar[hidden]{display:none}
+}
+.jumpbar ol{
+  list-style:none; margin:0; padding:6px 14px; display:flex; gap:6px; overflow-x:auto;
+  scrollbar-width:none; -webkit-overflow-scrolling:touch; scroll-padding-inline:14px;
+}
+.jumpbar ol::-webkit-scrollbar{display:none}
+.jumpbar li{flex:0 0 auto}
+.jumpbar a{
+  display:inline-flex; align-items:center; min-height:44px; padding:0 15px; border-radius:999px;
+  font-weight:800; font-size:.86rem; color:var(--ink-2); white-space:nowrap; border:1.5px solid var(--line);
+  background:var(--surface);
+}
+.jumpbar a:hover,.jumpbar .jb-top:hover{text-decoration:none; border-color:var(--teal)}
+.jumpbar .jb-top{
+  display:inline-flex; align-items:center; gap:5px; min-height:44px; padding:0 14px 0 11px; border-radius:999px; cursor:pointer;
+  font:800 .86rem var(--font-body); color:var(--ink); background:var(--surface-2); border:1.5px solid var(--line);
+}
+.jumpbar .jb-top svg{width:16px; height:16px}
+@media (max-width:980px){ body.has-jump .to-top{display:none} }
+.jumpbar a[aria-current="true"]{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+[data-jump]{scroll-margin-top:calc(var(--hdr-h) + var(--jump-h) + 12px)}
+
+/* back to top */
+.to-top{
+  position:fixed; right:16px; bottom:calc(18px + env(safe-area-inset-bottom,0px)); z-index:65;
+  width:48px; height:48px; border-radius:50%; border:1.5px solid var(--line); cursor:pointer;
+  background:var(--surface); color:var(--ink); box-shadow:var(--shadow); display:grid; place-items:center;
+  opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+}
+.to-top.show{opacity:1; visibility:visible; transform:none; transition:opacity .2s ease, transform .2s ease}
+.to-top svg{width:20px; height:20px}
+@media (max-width:820px){ .to-top{bottom:calc(84px + env(safe-area-inset-bottom,0px)); right:12px; width:46px; height:46px} }
+
+/* form fallback: honest "not sent yet" notice and one-tap send options */
+.unwired{background:var(--gold-soft); border:1px solid color-mix(in srgb,var(--gold) 45%,transparent); border-radius:12px; padding:13px 15px; font-size:.9rem; color:var(--ink-2); margin:0}
+.unwired b{color:var(--ink)}
+.done .how{font-size:.88rem; color:var(--ink-2); margin:0}
+.done .row .btn{min-height:48px}
+.draft-note{font-size:.82rem; color:var(--ink-3); margin:0}
+.draft-note button{background:none; border:0; padding:6px 2px; font:inherit; font-weight:800; color:var(--teal-ink); cursor:pointer; text-decoration:underline}
+
+@media (prefers-reduced-motion: reduce){
+  .to-top,.jumpbar,.jumpbar.on{transition:none}
+  .btn:hover,.rail-item:hover,.prog:hover,.fact:hover,a.cl:hover,ol.steps li:hover{transform:none}
+}
 </style>
 </head>
 <body>
@@ -745,7 +883,8 @@ html{color-scheme:light dark}
 <div class="announce">
   <span class="script">Now enrolling</span>
   <span class="hide-sm">Ages 4 weeks to 7 years</span>
-  <a href="#/contact">Schedule your private tour</a>
+  <a href="#/contact/tour">Schedule your private tour</a>
+  <span class="open-now" data-open-now aria-live="off"></span>
 </div>
 
 <header class="site">
@@ -769,19 +908,22 @@ html{color-scheme:light dark}
       <a href="#/careers">Careers</a>
       <a href="#/contact">Contact</a>
     </nav>
-    <a class="hdr-cta" href="#/contact">
+    <a class="hdr-cta" href="#/contact/tour">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       Schedule a Tour
     </a>
   </div>
 </header>
 
+<!-- page jump bar: filled per page from the [data-jump] sections (phones and tablets) -->
+<nav class="jumpbar" id="jumpbar" aria-label="On this page" hidden><ol></ol></nav>
+
 <main id="main">
 
 <!-- ========================= HOME ========================= -->
 <section data-route="home">
   <div class="hero">
-    <div class="hero-bg"><img src="img/storefront.jpg?v=3" alt="The Essence of Childcare University building on West Appleton Avenue in Milwaukee"></div>
+    <div class="hero-bg"><img src="img/storefront.jpg?v=3" alt="The Essence of Childcare University building on West Appleton Avenue in Milwaukee" srcset="img/w480/storefront.jpg?v=3 480w, img/w960/storefront.jpg?v=3 960w, img/storefront.jpg?v=3 1200w" sizes="100vw" width="1200" height="766" fetchpriority="high"></div>
     <div class="hero-wash"></div>
     <div class="wrap hero-inner">
       <div class="hero-card">
@@ -797,7 +939,7 @@ html{color-scheme:light dark}
         </ul>
         <div class="hero-btns">
           <a class="btn btn-primary" href="#/enrollment">Enroll Now</a>
-          <a class="btn btn-gold" href="#/contact">Schedule a Tour</a>
+          <a class="btn btn-gold" href="#/contact/tour">Schedule a Tour</a>
           <a class="btn btn-ghost" href="tel:+14147918637">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             Call Us
@@ -806,9 +948,9 @@ html{color-scheme:light dark}
       </div>
       <div class="hero-stack" aria-hidden="true">
         <span class="blob g"></span><span class="blob t"></span><span class="blob m"></span>
-        <figure class="ph a"><img src="img/chef-smile.jpg?v=4" alt=""><figcaption>Chef of the day</figcaption></figure>
-        <figure class="ph b"><img src="img/sensory-table.jpg?v=4" alt=""><figcaption>Water table play</figcaption></figure>
-        <figure class="ph c"><img src="img/little-hands.jpg?v=3" alt=""><figcaption>Little hands, big progress</figcaption></figure>
+        <figure class="ph a"><img src="img/chef-smile.jpg?v=4" alt="" srcset="img/w480/chef-smile.jpg?v=4 480w, img/w960/chef-smile.jpg?v=4 960w, img/chef-smile.jpg?v=4 1125w" sizes="250px" width="1125" height="1500" loading="lazy" decoding="async"><figcaption>Chef of the day</figcaption></figure>
+        <figure class="ph b"><img src="img/sensory-table.jpg?v=4" alt="" srcset="img/w480/sensory-table.jpg?v=4 480w, img/w960/sensory-table.jpg?v=4 960w, img/sensory-table.jpg?v=4 1125w" sizes="250px" width="1125" height="1500" loading="lazy" decoding="async"><figcaption>Water table play</figcaption></figure>
+        <figure class="ph c"><img src="img/little-hands.jpg?v=3" alt="" srcset="img/w480/little-hands.jpg?v=3 480w, img/little-hands.jpg?v=3 910w" sizes="250px" width="910" height="1200" loading="lazy" decoding="async"><figcaption>Little hands, big progress</figcaption></figure>
         <span class="star s1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg></span><span class="star s2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg></span>
       </div>
     </div>
@@ -818,24 +960,24 @@ html{color-scheme:light dark}
   <div class="wrap rail-wrap">
     <div class="rail">
       <a class="rail-item" href="#/programs">
-        <span class="arch"><img src="img/infant-nook.jpg?v=4" alt="The ECU infant nook with a rocking chair, soft blocks and floor mats under a rainbow window" loading="eager"></span>
-        <b>Infant Room</b><small style="color:var(--teal)">4 wks &ndash; 18 mo</small>
+        <span class="arch"><img src="img/infant-nook.jpg?v=4" alt="The ECU infant nook with a rocking chair, soft blocks and floor mats under a rainbow window" loading="lazy" srcset="img/w480/infant-nook.jpg?v=4 480w, img/w960/infant-nook.jpg?v=4 960w, img/infant-nook.jpg?v=4 1500w" sizes="(max-width:520px) 160px, (max-width:980px) 178px, 220px" width="1500" height="1125" decoding="async"></span>
+        <b>Infant Room</b><small style="color:var(--teal-ink)">4 wks &ndash; 18 mo</small>
       </a>
       <a class="rail-item" href="#/programs">
-        <span class="arch"><img src="img/toddler-room.jpg?v=3" alt="The ECU toddler room with a building table and instrument shelf" loading="eager"></span>
-        <b>Toddler Room</b><small style="color:var(--gold)">18 mo &ndash; 3 yrs</small>
+        <span class="arch"><img src="img/toddler-room.jpg?v=3" alt="The ECU toddler room with a building table and instrument shelf" loading="lazy" srcset="img/w480/toddler-room.jpg?v=3 480w, img/w960/toddler-room.jpg?v=3 960w, img/toddler-room.jpg?v=3 1200w" sizes="(max-width:520px) 160px, (max-width:980px) 178px, 220px" width="1200" height="888" decoding="async"></span>
+        <b>Toddler Room</b><small style="color:var(--gold-ink)">18 mo &ndash; 3 yrs</small>
       </a>
       <a class="rail-item" href="#/programs">
-        <span class="arch"><img src="img/preschool-room.jpg?v=3" alt="The ECU preschool room with learning charts and child-height tables" loading="eager"></span>
-        <b>Preschool</b><small style="color:var(--green)">Ages 3 &ndash; 4</small>
+        <span class="arch"><img src="img/preschool-room.jpg?v=3" alt="The ECU preschool room with learning charts and child-height tables" loading="lazy" srcset="img/w480/preschool-room.jpg?v=3 480w, img/w960/preschool-room.jpg?v=3 960w, img/preschool-room.jpg?v=3 1200w" sizes="(max-width:520px) 160px, (max-width:980px) 178px, 220px" width="1200" height="1067" decoding="async"></span>
+        <b>Preschool</b><small style="color:var(--green-ink)">Ages 3 &ndash; 4</small>
       </a>
       <a class="rail-item" href="#/programs">
-        <span class="arch"><img src="img/dramatic-play.jpg?v=3" alt="The ECU school-age activity area" loading="eager"></span>
-        <b>School-Age</b><small style="color:var(--magenta)">Ages 5 &ndash; 7</small>
+        <span class="arch"><img src="img/dramatic-play.jpg?v=3" alt="The ECU school-age activity area" loading="lazy" srcset="img/w480/dramatic-play.jpg?v=3 480w, img/w960/dramatic-play.jpg?v=3 960w, img/dramatic-play.jpg?v=3 1200w" sizes="(max-width:520px) 160px, (max-width:980px) 178px, 220px" width="1200" height="1008" decoding="async"></span>
+        <b>School-Age</b><small style="color:var(--magenta-ink)">Ages 5 &ndash; 7</small>
       </a>
       <a class="rail-item" href="#/gallery">
-        <span class="arch"><img src="img/g-cubbies.jpg?v=3" alt="Cubbies and the rainbow window in the ECU arrival area" loading="eager"></span>
-        <b>Arrival</b><small style="color:var(--violet)">Individual cubby</small>
+        <span class="arch"><img src="img/g-cubbies.jpg?v=3" alt="Cubbies and the rainbow window in the ECU arrival area" loading="lazy" srcset="img/w480/g-cubbies.jpg?v=3 480w, img/w960/g-cubbies.jpg?v=3 960w, img/g-cubbies.jpg?v=3 1200w" sizes="(max-width:520px) 160px, (max-width:980px) 178px, 220px" width="1200" height="900" decoding="async"></span>
+        <b>Arrival</b><small style="color:var(--violet-ink)">Individual cubby</small>
       </a>
     </div>
   </div>
@@ -852,10 +994,10 @@ html{color-scheme:light dark}
   </section>
 
   <div class="marquee" aria-label="Photos from inside the center">
-    <div class="marquee-track"><a href="#/gallery" tabindex="-1"><img src="img/chef-smile.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/infant-nook.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/snack-bagels.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/sensory-table.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/pretend-kitchen.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/blocks.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/music-shelf.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/meal-breakfast.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/play-wall.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/art-collage.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/infant-shelf.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/snack-yogurt.jpg?v=4" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/preschool-room.jpg?v=3" alt="" loading="lazy"></a><a href="#/gallery" tabindex="-1"><img src="img/bath-ocean.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/chef-smile.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/infant-nook.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/snack-bagels.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/sensory-table.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/pretend-kitchen.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/blocks.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/music-shelf.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/meal-breakfast.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/play-wall.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/art-collage.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/infant-shelf.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/snack-yogurt.jpg?v=4" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/preschool-room.jpg?v=3" alt="" loading="lazy"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/bath-ocean.jpg?v=3" alt="" loading="lazy"></a></div>
+    <div class="marquee-track"><a href="#/gallery" tabindex="-1"><img src="img/chef-smile.jpg?v=4" alt="" loading="lazy" srcset="img/w480/chef-smile.jpg?v=4 480w, img/w960/chef-smile.jpg?v=4 960w, img/chef-smile.jpg?v=4 1125w" sizes="(max-width:760px) 170px, 230px" width="1125" height="1500" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/infant-nook.jpg?v=4" alt="" loading="lazy" srcset="img/w480/infant-nook.jpg?v=4 480w, img/w960/infant-nook.jpg?v=4 960w, img/infant-nook.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/snack-bagels.jpg?v=4" alt="" loading="lazy" srcset="img/w480/snack-bagels.jpg?v=4 480w, img/w960/snack-bagels.jpg?v=4 960w, img/snack-bagels.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/sensory-table.jpg?v=4" alt="" loading="lazy" srcset="img/w480/sensory-table.jpg?v=4 480w, img/w960/sensory-table.jpg?v=4 960w, img/sensory-table.jpg?v=4 1125w" sizes="(max-width:760px) 170px, 230px" width="1125" height="1500" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/pretend-kitchen.jpg?v=4" alt="" loading="lazy" srcset="img/w480/pretend-kitchen.jpg?v=4 480w, img/w960/pretend-kitchen.jpg?v=4 960w, img/pretend-kitchen.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/blocks.jpg?v=3" alt="" loading="lazy" srcset="img/w480/blocks.jpg?v=3 480w, img/blocks.jpg?v=3 900w" sizes="(max-width:760px) 170px, 230px" width="900" height="1200" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/music-shelf.jpg?v=4" alt="" loading="lazy" srcset="img/w480/music-shelf.jpg?v=4 480w, img/w960/music-shelf.jpg?v=4 960w, img/music-shelf.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/meal-breakfast.jpg?v=3" alt="" loading="lazy" srcset="img/w480/meal-breakfast.jpg?v=3 480w, img/w960/meal-breakfast.jpg?v=3 960w, img/meal-breakfast.jpg?v=3 1200w" sizes="(max-width:760px) 170px, 230px" width="1200" height="900" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/play-wall.jpg?v=4" alt="" loading="lazy" srcset="img/w480/play-wall.jpg?v=4 480w, img/play-wall.jpg?v=4 900w" sizes="(max-width:760px) 170px, 230px" width="900" height="1500" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/art-collage.jpg?v=3" alt="" loading="lazy" srcset="img/w480/art-collage.jpg?v=3 480w, img/art-collage.jpg?v=3 701w" sizes="(max-width:760px) 170px, 230px" width="701" height="1200" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/infant-shelf.jpg?v=4" alt="" loading="lazy" srcset="img/w480/infant-shelf.jpg?v=4 480w, img/w960/infant-shelf.jpg?v=4 960w, img/infant-shelf.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/snack-yogurt.jpg?v=4" alt="" loading="lazy" srcset="img/w480/snack-yogurt.jpg?v=4 480w, img/w960/snack-yogurt.jpg?v=4 960w, img/snack-yogurt.jpg?v=4 1125w" sizes="(max-width:760px) 170px, 230px" width="1125" height="1500" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/preschool-room.jpg?v=3" alt="" loading="lazy" srcset="img/w480/preschool-room.jpg?v=3 480w, img/w960/preschool-room.jpg?v=3 960w, img/preschool-room.jpg?v=3 1200w" sizes="(max-width:760px) 170px, 230px" width="1200" height="1067" decoding="async"></a><a href="#/gallery" tabindex="-1"><img src="img/bath-ocean.jpg?v=3" alt="" loading="lazy" srcset="img/w480/bath-ocean.jpg?v=3 480w, img/bath-ocean.jpg?v=3 624w" sizes="(max-width:760px) 170px, 230px" width="624" height="1082" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/chef-smile.jpg?v=4" alt="" loading="lazy" srcset="img/w480/chef-smile.jpg?v=4 480w, img/w960/chef-smile.jpg?v=4 960w, img/chef-smile.jpg?v=4 1125w" sizes="(max-width:760px) 170px, 230px" width="1125" height="1500" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/infant-nook.jpg?v=4" alt="" loading="lazy" srcset="img/w480/infant-nook.jpg?v=4 480w, img/w960/infant-nook.jpg?v=4 960w, img/infant-nook.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/snack-bagels.jpg?v=4" alt="" loading="lazy" srcset="img/w480/snack-bagels.jpg?v=4 480w, img/w960/snack-bagels.jpg?v=4 960w, img/snack-bagels.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/sensory-table.jpg?v=4" alt="" loading="lazy" srcset="img/w480/sensory-table.jpg?v=4 480w, img/w960/sensory-table.jpg?v=4 960w, img/sensory-table.jpg?v=4 1125w" sizes="(max-width:760px) 170px, 230px" width="1125" height="1500" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/pretend-kitchen.jpg?v=4" alt="" loading="lazy" srcset="img/w480/pretend-kitchen.jpg?v=4 480w, img/w960/pretend-kitchen.jpg?v=4 960w, img/pretend-kitchen.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/blocks.jpg?v=3" alt="" loading="lazy" srcset="img/w480/blocks.jpg?v=3 480w, img/blocks.jpg?v=3 900w" sizes="(max-width:760px) 170px, 230px" width="900" height="1200" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/music-shelf.jpg?v=4" alt="" loading="lazy" srcset="img/w480/music-shelf.jpg?v=4 480w, img/w960/music-shelf.jpg?v=4 960w, img/music-shelf.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/meal-breakfast.jpg?v=3" alt="" loading="lazy" srcset="img/w480/meal-breakfast.jpg?v=3 480w, img/w960/meal-breakfast.jpg?v=3 960w, img/meal-breakfast.jpg?v=3 1200w" sizes="(max-width:760px) 170px, 230px" width="1200" height="900" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/play-wall.jpg?v=4" alt="" loading="lazy" srcset="img/w480/play-wall.jpg?v=4 480w, img/play-wall.jpg?v=4 900w" sizes="(max-width:760px) 170px, 230px" width="900" height="1500" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/art-collage.jpg?v=3" alt="" loading="lazy" srcset="img/w480/art-collage.jpg?v=3 480w, img/art-collage.jpg?v=3 701w" sizes="(max-width:760px) 170px, 230px" width="701" height="1200" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/infant-shelf.jpg?v=4" alt="" loading="lazy" srcset="img/w480/infant-shelf.jpg?v=4 480w, img/w960/infant-shelf.jpg?v=4 960w, img/infant-shelf.jpg?v=4 1500w" sizes="(max-width:760px) 170px, 230px" width="1500" height="1125" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/snack-yogurt.jpg?v=4" alt="" loading="lazy" srcset="img/w480/snack-yogurt.jpg?v=4 480w, img/w960/snack-yogurt.jpg?v=4 960w, img/snack-yogurt.jpg?v=4 1125w" sizes="(max-width:760px) 170px, 230px" width="1125" height="1500" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/preschool-room.jpg?v=3" alt="" loading="lazy" srcset="img/w480/preschool-room.jpg?v=3 480w, img/w960/preschool-room.jpg?v=3 960w, img/preschool-room.jpg?v=3 1200w" sizes="(max-width:760px) 170px, 230px" width="1200" height="1067" decoding="async"></a><a aria-hidden="true" href="#/gallery" tabindex="-1"><img src="img/bath-ocean.jpg?v=3" alt="" loading="lazy" srcset="img/w480/bath-ocean.jpg?v=3 480w, img/bath-ocean.jpg?v=3 624w" sizes="(max-width:760px) 170px, 230px" width="624" height="1082" decoding="async"></a></div>
   </div>
 
-  <div class="hours-strip">
+  <div class="hours-strip" data-jump="Hours" id="j-hours">
     <div class="rule"></div>
     <div class="wrap hours-grid">
       <div>
@@ -868,11 +1010,12 @@ html{color-scheme:light dark}
         </div>
         <div class="clockbar-ticks"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>12 AM</span></div>
         <p class="clockbar-note">Monday through Friday. Closed on scheduled holidays and announced closures.</p>
+        <p class="open-now" data-open-now></p>
       </div>
     </div>
   </div>
 
-  <section class="band">
+  <section class="band" data-jump="Why ECU" id="j-why">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Why families choose ECU</p>
@@ -880,7 +1023,7 @@ html{color-scheme:light dark}
       </div>
       <div class="bento">
         <div class="cell photo-cell span2 row2">
-          <img src="img/little-hands.jpg?v=3" alt="ECU toddlers practising pencil and crayon grip together at a classroom table" loading="lazy">
+          <img src="img/little-hands.jpg?v=3" alt="ECU toddlers practising pencil and crayon grip together at a classroom table" loading="lazy" srcset="img/w480/little-hands.jpg?v=3 480w, img/little-hands.jpg?v=3 910w" sizes="(max-width:560px) 100vw, (max-width:900px) 100vw, 580px" width="910" height="1200" decoding="async">
           <div class="cap">Little hands, big progress<em>Developing skills every day</em></div>
         </div>
         <div class="cell">
@@ -904,11 +1047,11 @@ html{color-scheme:light dark}
           <p>We accept Wisconsin Shares and private pay. Diapers and wipes are provided, so that&rsquo;s one less thing to pack.</p>
         </div>
         <div class="cell photo-cell span2">
-          <img src="img/meal-breakfast.jpg?v=3" alt="Breakfast trays of pancakes, scrambled egg, sausage, strawberries and orange juice" loading="lazy">
+          <img src="img/meal-breakfast.jpg?v=3" alt="Breakfast trays of pancakes, scrambled egg, sausage, strawberries and orange juice" loading="lazy" srcset="img/w480/meal-breakfast.jpg?v=3 480w, img/w960/meal-breakfast.jpg?v=3 960w, img/meal-breakfast.jpg?v=3 1200w" sizes="(max-width:560px) 100vw, (max-width:900px) 100vw, 580px" width="1200" height="900" decoding="async">
           <div class="cap">CACFP-approved meals and snacks<em>Served fresh, every day</em></div>
         </div>
         <div class="cell photo-cell span2">
-          <img src="img/welcome-easel.jpg?v=3" alt="A chalkboard easel in the ECU play area reading Welcome to Essence Childcare" loading="lazy" style="object-position:center 14%">
+          <img src="img/welcome-easel.jpg?v=3" alt="A chalkboard easel in the ECU play area reading Welcome to Essence Childcare" loading="lazy" style="object-position:center 14%" srcset="img/w480/welcome-easel.jpg?v=3 480w, img/welcome-easel.jpg?v=3 675w" sizes="(max-width:560px) 100vw, (max-width:900px) 100vw, 580px" width="675" height="1200" decoding="async">
           <div class="cap">A welcome every morning<em>You are loved, you are smart</em></div>
         </div>
       </div>
@@ -918,7 +1061,7 @@ html{color-scheme:light dark}
   <section class="band tint">
     <div class="wrap split">
       <div class="matted" style="--mat:var(--teal)">
-        <img src="img/preschool-room.jpg?v=3" alt="The ECU preschool room set up for the morning" loading="lazy">
+        <img src="img/preschool-room.jpg?v=3" alt="The ECU preschool room set up for the morning" loading="lazy" srcset="img/w480/preschool-room.jpg?v=3 480w, img/w960/preschool-room.jpg?v=3 960w, img/preschool-room.jpg?v=3 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="1067" decoding="async">
       </div>
       <div>
         <p class="eyebrow">A word from ECU</p>
@@ -929,7 +1072,7 @@ html{color-scheme:light dark}
     </div>
   </section>
 
-  <section class="band">
+  <section class="band" data-jump="Classrooms" id="j-rooms">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Our classrooms</p>
@@ -941,7 +1084,7 @@ html{color-scheme:light dark}
     </div>
   </section>
 
-  <section class="band tint">
+  <section class="band tint" data-jump="Meals" id="j-meals">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Meals</p>
@@ -949,17 +1092,17 @@ html{color-scheme:light dark}
         <p class="lede">Meals and snacks follow the center's CACFP-approved meal plan. Tell us about allergies and dietary needs before your child's first day.</p>
       </div>
       <div class="mealstrip">
-        <figure class="meal" style="margin:0"><img src="img/meal-breakfast.jpg?v=3" alt="Breakfast trays with pancakes, scrambled egg, sausage, strawberries and orange juice" loading="lazy"><figcaption class="cap">Pancakes, eggs, sausage and fruit</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/meal-rice.jpg?v=3" alt="Chicken fried rice with vegetables and baked nuggets in children's bowls" loading="lazy"><figcaption class="cap">Chicken fried rice and baked nuggets</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/meal-quesadilla.jpg?v=3" alt="Ham and cheese quesadillas cut into triangles" loading="lazy"><figcaption class="cap">Ham and cheese quesadillas</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/meal-pancakes.jpg?v=3" alt="Pancakes topped with blackberries and blueberries with banana" loading="lazy"><figcaption class="cap">Pancakes, berries and banana</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/snack-bagels.jpg?v=4" alt="Bagels with cream cheese and sprinkles, apple slices and blueberries in colorful bowls" loading="lazy"><figcaption class="cap">Bagels, apples and blueberries</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/snack-yogurt.jpg?v=4" alt="Yogurt with strawberries and blueberries in green bowls" loading="lazy"><figcaption class="cap">Yogurt with fresh berries</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-breakfast.jpg?v=3" alt="Breakfast trays with pancakes, scrambled egg, sausage, strawberries and orange juice" loading="lazy" srcset="img/w480/meal-breakfast.jpg?v=3 480w, img/w960/meal-breakfast.jpg?v=3 960w, img/meal-breakfast.jpg?v=3 1200w" sizes="(max-width:760px) 100vw, 380px" width="1200" height="900" decoding="async"><figcaption class="cap">Pancakes, eggs, sausage and fruit</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-rice.jpg?v=3" alt="Chicken fried rice with vegetables and baked nuggets in children's bowls" loading="lazy" srcset="img/w480/meal-rice.jpg?v=3 480w, img/meal-rice.jpg?v=3 900w" sizes="(max-width:760px) 100vw, 380px" width="900" height="1200" decoding="async"><figcaption class="cap">Chicken fried rice and baked nuggets</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-quesadilla.jpg?v=3" alt="Ham and cheese quesadillas cut into triangles" loading="lazy" srcset="img/w480/meal-quesadilla.jpg?v=3 480w, img/meal-quesadilla.jpg?v=3 900w" sizes="(max-width:760px) 100vw, 380px" width="900" height="1200" decoding="async"><figcaption class="cap">Ham and cheese quesadillas</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-pancakes.jpg?v=3" alt="Pancakes topped with blackberries and blueberries with banana" loading="lazy" srcset="img/w480/meal-pancakes.jpg?v=3 480w, img/meal-pancakes.jpg?v=3 900w" sizes="(max-width:760px) 100vw, 380px" width="900" height="1200" decoding="async"><figcaption class="cap">Pancakes, berries and banana</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/snack-bagels.jpg?v=4" alt="Bagels with cream cheese and sprinkles, apple slices and blueberries in colorful bowls" loading="lazy" srcset="img/w480/snack-bagels.jpg?v=4 480w, img/w960/snack-bagels.jpg?v=4 960w, img/snack-bagels.jpg?v=4 1500w" sizes="(max-width:760px) 100vw, 380px" width="1500" height="1125" decoding="async"><figcaption class="cap">Bagels, apples and blueberries</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/snack-yogurt.jpg?v=4" alt="Yogurt with strawberries and blueberries in green bowls" loading="lazy" srcset="img/w480/snack-yogurt.jpg?v=4 480w, img/w960/snack-yogurt.jpg?v=4 960w, img/snack-yogurt.jpg?v=4 1125w" sizes="(max-width:760px) 100vw, 380px" width="1125" height="1500" decoding="async"><figcaption class="cap">Yogurt with fresh berries</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <section class="band">
+  <section class="band" data-jump="Photos" id="j-photos">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Inside the center</p>
@@ -971,10 +1114,10 @@ html{color-scheme:light dark}
     </div>
   </section>
 
-  <section class="band tint">
+  <section class="band tint" data-jump="Tour" id="j-tour">
     <div class="wrap">
       <div class="cta-band">
-        <img class="bg" src="img/dramatic-play.jpg?v=3" alt="" aria-hidden="true" loading="lazy">
+        <img class="bg" src="img/dramatic-play.jpg?v=3" alt="" aria-hidden="true" loading="lazy" srcset="img/w480/dramatic-play.jpg?v=3 480w, img/w960/dramatic-play.jpg?v=3 960w, img/dramatic-play.jpg?v=3 1200w" sizes="100vw" width="1200" height="1008" decoding="async">
         <div class="wash"></div>
         <div class="inner">
           <h2>Ready to learn more about ECU?</h2>
@@ -982,7 +1125,7 @@ html{color-scheme:light dark}
           <p>Contact us to ask about current openings, schedule a tour, or begin the enrollment process.</p>
           <div class="row">
             <a class="btn btn-gold" href="#/contact">Check Availability</a>
-            <a class="btn btn-ghost" href="#/contact">Schedule a Tour</a>
+            <a class="btn btn-ghost" href="#/contact/tour">Schedule a Tour</a>
           </div>
         </div>
       </div>
@@ -993,7 +1136,7 @@ html{color-scheme:light dark}
 <!-- ========================= ABOUT ========================= -->
 <section data-route="about" hidden>
   <div class="banner">
-    <img class="bg" src="img/preschool-room.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/preschool-room.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/preschool-room.jpg?v=3 480w, img/w960/preschool-room.jpg?v=3 960w, img/preschool-room.jpg?v=3 1200w" sizes="100vw" width="1200" height="1067" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">About</p>
@@ -1010,14 +1153,14 @@ html{color-scheme:light dark}
         <div class="note"><b>Our mission.</b> To provide a safe, nurturing and educational child care environment where children can learn through play, build confidence, develop healthy relationships and prepare for their next stage of growth.</div>
       </div>
       <div class="matted" style="--mat:var(--magenta)">
-        <img src="img/welcome-easel.jpg?v=3" alt="A chalkboard easel reading Welcome to Essence Childcare, surrounded by toys" loading="lazy">
+        <img src="img/welcome-easel.jpg?v=3" alt="A chalkboard easel reading Welcome to Essence Childcare, surrounded by toys" loading="lazy" srcset="img/w480/welcome-easel.jpg?v=3 480w, img/welcome-easel.jpg?v=3 675w" sizes="(max-width:860px) 100vw, 560px" width="675" height="1200" decoding="async">
       </div>
     </div>
   </section>
 
   <section class="band tint">
     <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">What we stand on</p><h2>Our values</h2></div>
+      <div class="sec-head" data-jump="Values" id="j-values"><p class="eyebrow">What we stand on</p><h2>Our values</h2></div>
       <div class="split" style="align-items:start">
         <div class="grid" style="display:grid; gap:22px">
           <div class="value"><span class="dot" style="background:var(--teal)"></span><div><b>Safety</b><p>Children's health, protection and supervision come first.</p></div></div>
@@ -1028,9 +1171,9 @@ html{color-scheme:light dark}
           <div class="value"><span class="dot" style="background:var(--coral)"></span><div><b>Community</b><p>We serve Milwaukee's north and west sides, with hours built around how families really work.</p></div></div>
         </div>
         <div class="mosaic" style="grid-auto-rows:170px">
-          <a class="w2 t2" href="#/gallery"><img src="img/sensory-table.jpg?v=4" alt="Children playing with foam dinosaurs at an outdoor water table" loading="lazy"></a>
-          <a class="w2" href="#/gallery"><img src="img/g-cubbies.jpg?v=3" alt="A wall of wooden cubbies, one for every child" loading="lazy"></a>
-          <a class="w2" href="#/gallery"><img src="img/art-collage.jpg?v=3" alt="A child placing tissue paper squares on a collage at the art table" loading="lazy"></a>
+          <a class="w2 t2" href="#/gallery"><img src="img/sensory-table.jpg?v=4" alt="Children playing with foam dinosaurs at an outdoor water table" loading="lazy" srcset="img/w480/sensory-table.jpg?v=4 480w, img/w960/sensory-table.jpg?v=4 960w, img/sensory-table.jpg?v=4 1125w" sizes="(max-width:860px) 100vw, 560px" width="1125" height="1500" decoding="async"></a>
+          <a class="w2" href="#/gallery"><img src="img/g-cubbies.jpg?v=3" alt="A wall of wooden cubbies, one for every child" loading="lazy" srcset="img/w480/g-cubbies.jpg?v=3 480w, img/w960/g-cubbies.jpg?v=3 960w, img/g-cubbies.jpg?v=3 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="900" decoding="async"></a>
+          <a class="w2" href="#/gallery"><img src="img/art-collage.jpg?v=3" alt="A child placing tissue paper squares on a collage at the art table" loading="lazy" srcset="img/w480/art-collage.jpg?v=3 480w, img/art-collage.jpg?v=3 701w" sizes="(max-width:860px) 100vw, 560px" width="701" height="1200" decoding="async"></a>
         </div>
       </div>
     </div>
@@ -1039,7 +1182,7 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">Meet our team</p>
+        <p class="eyebrow" data-jump="Team" id="j-team">Meet our team</p>
         <h2>The people in the rooms</h2>
         <p class="lede">Our staff members work together to create a welcoming and supportive environment for every child. Each team member completes required training and follows center policies designed to support safe, quality care.</p>
       </div>
@@ -1050,7 +1193,7 @@ html{color-scheme:light dark}
   <section class="band tint">
     <div class="wrap split" style="align-items:start">
       <div>
-        <p class="eyebrow">Safety and family confidence</p>
+        <p class="eyebrow" data-jump="Safety" id="j-safety">Safety and family confidence</p>
         <h2>Your child's safety matters</h2>
         <p class="lede" style="margin:.8rem 0 1.4rem">ECU follows center policies and applicable child care licensing requirements related to supervision, health, emergency preparedness, safe sleep, medication, authorized pickup, incident reporting and staff training.</p>
         <div class="safety-grid" style="grid-template-columns:1fr">
@@ -1063,7 +1206,7 @@ html{color-scheme:light dark}
       </div>
       <div>
         <div class="matted" style="--mat:var(--green); margin-bottom:22px">
-          <img src="img/infant-cribs.jpg?v=3" alt="The ECU infant sleeping area with individual cribs" loading="lazy">
+          <img src="img/infant-cribs.jpg?v=3" alt="The ECU infant sleeping area with individual cribs" loading="lazy" srcset="img/w480/infant-cribs.jpg?v=3 480w, img/w960/infant-cribs.jpg?v=3 960w, img/infant-cribs.jpg?v=3 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="698" decoding="async">
         </div>
         <div class="safety-grid" style="grid-template-columns:1fr">
           <div>Child supervision</div>
@@ -1080,7 +1223,7 @@ html{color-scheme:light dark}
 <!-- ========================= PROGRAMS ========================= -->
 <section data-route="programs" hidden>
   <div class="banner">
-    <img class="bg" src="img/toddler-room.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/toddler-room.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/toddler-room.jpg?v=3 480w, img/w960/toddler-room.jpg?v=3 960w, img/toddler-room.jpg?v=3 1200w" sizes="100vw" width="1200" height="888" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Programs</p>
@@ -1089,12 +1232,12 @@ html{color-scheme:light dark}
     </div>
   </div>
 
-  <section class="band"><div class="wrap" id="prog-full"></div></section>
+  <section class="band" data-jump="Classrooms" id="j-prog"><div class="wrap" id="prog-full"></div></section>
 
   <section class="band tint">
     <div class="wrap split" style="align-items:start">
       <div>
-        <p class="eyebrow">A day at ECU</p>
+        <p class="eyebrow" data-jump="Daily routine" id="j-day">A day at ECU</p>
         <h2>Typical daily experiences</h2>
         <p class="lede" style="margin:.8rem 0 1.3rem">Routines stay predictable so children know what comes next. Exact timing shifts by classroom and by age.</p>
         <ul class="dots">
@@ -1112,9 +1255,9 @@ html{color-scheme:light dark}
         </ul>
       </div>
       <div class="mosaic" style="grid-auto-rows:180px">
-        <a class="w2 t2" href="#/gallery"><img src="img/little-hands.jpg?v=3" alt="Toddlers practising crayon grip at a classroom table" loading="lazy"></a>
-        <a class="w2" href="#/gallery"><img src="img/blocks.jpg?v=3" alt="A toddler stacking soft numbered blocks into a tower" loading="lazy"></a>
-        <a class="w2" href="#/gallery"><img src="img/chef-smile.jpg?v=4" alt="A smiling toddler in a chef hat and checked apron" loading="lazy"></a>
+        <a class="w2 t2" href="#/gallery"><img src="img/little-hands.jpg?v=3" alt="Toddlers practising crayon grip at a classroom table" loading="lazy" srcset="img/w480/little-hands.jpg?v=3 480w, img/little-hands.jpg?v=3 910w" sizes="(max-width:860px) 100vw, 560px" width="910" height="1200" decoding="async"></a>
+        <a class="w2" href="#/gallery"><img src="img/blocks.jpg?v=3" alt="A toddler stacking soft numbered blocks into a tower" loading="lazy" srcset="img/w480/blocks.jpg?v=3 480w, img/blocks.jpg?v=3 900w" sizes="(max-width:860px) 100vw, 560px" width="900" height="1200" decoding="async"></a>
+        <a class="w2" href="#/gallery"><img src="img/chef-smile.jpg?v=4" alt="A smiling toddler in a chef hat and checked apron" loading="lazy" srcset="img/w480/chef-smile.jpg?v=4 480w, img/w960/chef-smile.jpg?v=4 960w, img/chef-smile.jpg?v=4 1125w" sizes="(max-width:860px) 100vw, 560px" width="1125" height="1500" decoding="async"></a>
       </div>
     </div>
   </section>
@@ -1122,14 +1265,14 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">Meals</p>
+        <p class="eyebrow" data-jump="Meals" id="j-pmeals">Meals</p>
         <h2>CACFP-approved meals and snacks</h2>
         <p class="lede">Served according to the center's meal plan and program schedule. Tell us about food allergies, dietary restrictions or special feeding instructions.</p>
       </div>
       <div class="mealstrip">
-        <figure class="meal" style="margin:0"><img src="img/meal-rice.jpg?v=3" alt="Chicken fried rice with vegetables and baked nuggets" loading="lazy"><figcaption class="cap">Lunch</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/meal-quesadilla.jpg?v=3" alt="Ham and cheese quesadillas cut for small hands" loading="lazy"><figcaption class="cap">Afternoon snack</figcaption></figure>
-        <figure class="meal" style="margin:0"><img src="img/meal-breakfast.jpg?v=3" alt="Breakfast tray with pancakes, scrambled egg, sausage and orange juice" loading="lazy"><figcaption class="cap">Breakfast</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-rice.jpg?v=3" alt="Chicken fried rice with vegetables and baked nuggets" loading="lazy" srcset="img/w480/meal-rice.jpg?v=3 480w, img/meal-rice.jpg?v=3 900w" sizes="(max-width:760px) 100vw, 380px" width="900" height="1200" decoding="async"><figcaption class="cap">Lunch</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-quesadilla.jpg?v=3" alt="Ham and cheese quesadillas cut for small hands" loading="lazy" srcset="img/w480/meal-quesadilla.jpg?v=3 480w, img/meal-quesadilla.jpg?v=3 900w" sizes="(max-width:760px) 100vw, 380px" width="900" height="1200" decoding="async"><figcaption class="cap">Afternoon snack</figcaption></figure>
+        <figure class="meal" style="margin:0"><img src="img/meal-breakfast.jpg?v=3" alt="Breakfast tray with pancakes, scrambled egg, sausage and orange juice" loading="lazy" srcset="img/w480/meal-breakfast.jpg?v=3 480w, img/w960/meal-breakfast.jpg?v=3 960w, img/meal-breakfast.jpg?v=3 1200w" sizes="(max-width:760px) 100vw, 380px" width="1200" height="900" decoding="async"><figcaption class="cap">Breakfast</figcaption></figure>
       </div>
     </div>
   </section>
@@ -1138,7 +1281,7 @@ html{color-scheme:light dark}
 <!-- ========================= ENROLLMENT ========================= -->
 <section data-route="enrollment" hidden>
   <div class="banner">
-    <img class="bg" src="img/infant-room.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/infant-room.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/infant-room.jpg?v=3 480w, img/w960/infant-room.jpg?v=3 960w, img/infant-room.jpg?v=3 1200w" sizes="100vw" width="1200" height="993" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Enrollment</p>
@@ -1150,7 +1293,7 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap split" style="align-items:start">
       <div>
-        <p class="eyebrow">Six steps</p>
+        <p class="eyebrow" data-jump="Six steps" id="j-steps">Six steps</p>
         <h2 style="margin-bottom:1.3rem">How to enroll</h2>
         <ol class="steps">
           <li><div><b>Contact ECU</b><span>Call or message us to ask about availability in your child's age group.</span></div></li>
@@ -1163,9 +1306,9 @@ html{color-scheme:light dark}
       </div>
       <div>
         <div class="matted" style="--mat:var(--gold); margin-bottom:26px">
-          <img src="img/welcome-easel.jpg?v=3" alt="A chalkboard easel reading Welcome to Essence Childcare" loading="lazy">
+          <img src="img/welcome-easel.jpg?v=3" alt="A chalkboard easel reading Welcome to Essence Childcare" loading="lazy" srcset="img/w480/welcome-easel.jpg?v=3 480w, img/welcome-easel.jpg?v=3 675w" sizes="(max-width:860px) 100vw, 560px" width="675" height="1200" decoding="async">
         </div>
-        <h3 style="margin-bottom:.9rem">What to have ready</h3>
+        <h3 style="margin-bottom:.9rem" data-jump="What to have ready" id="j-ready">What to have ready</h3>
         <ul class="ticks">
           <li>Child's full legal name and date of birth</li>
           <li>Parent or guardian contact information</li>
@@ -1182,7 +1325,7 @@ html{color-scheme:light dark}
   <section class="band tint">
     <div class="wrap" style="max-width:840px">
       <div class="sec-head">
-        <p class="eyebrow">Start here</p>
+        <p class="eyebrow" data-jump="Inquiry form" id="j-enroll-form">Start here</p>
         <h2>Enrollment inquiry</h2>
         <p class="lede">Send us your child's details and we will contact you about availability and next steps. Nothing on this form commits you to enrolling.</p>
       </div>
@@ -1194,7 +1337,7 @@ html{color-scheme:light dark}
 <!-- ========================= TUITION ========================= -->
 <section data-route="tuition" hidden>
   <div class="banner">
-    <img class="bg" src="img/g-cubbies.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/g-cubbies.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/g-cubbies.jpg?v=3 480w, img/w960/g-cubbies.jpg?v=3 960w, img/g-cubbies.jpg?v=3 1200w" sizes="100vw" width="1200" height="900" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Tuition &amp; payments</p>
@@ -1206,7 +1349,7 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap split" style="align-items:start">
       <div>
-        <h2>Fees and policies</h2>
+        <h2 data-jump="Fees" id="j-fees">Fees and policies</h2>
         <p style="margin-top:.8rem">Tuition and fees are due according to your signed payment agreement. Tuition may remain due during absences, illness and approved vacation periods according to the parent handbook and payment agreement.</p>
         <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; margin-top:1.3rem; box-shadow:var(--shadow-sm)">
           <div class="rule" style="height:5px"></div>
@@ -1227,11 +1370,11 @@ html{color-scheme:light dark}
       </div>
       <div style="display:grid; gap:18px">
         <div class="matted" style="--mat:var(--violet)">
-          <img src="img/blocks.jpg?v=3" alt="A child stacking soft numbered blocks in the toddler room" loading="lazy">
+          <img src="img/blocks.jpg?v=3" alt="A child stacking soft numbered blocks in the toddler room" loading="lazy" srcset="img/w480/blocks.jpg?v=3 480w, img/blocks.jpg?v=3 900w" sizes="(max-width:860px) 100vw, 560px" width="900" height="1200" decoding="async">
         </div>
         <div class="cell" style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:24px 22px; box-shadow:var(--shadow-sm)">
           <div class="ico" style="background:var(--green-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#3CA22F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-          <h3>Wisconsin Shares &amp; private pay</h3>
+          <h3 data-jump="Wisconsin Shares" id="j-shares">Wisconsin Shares &amp; private pay</h3>
           <p>ECU accepts Wisconsin Shares and private pay. Families using Wisconsin Shares complete their own eligibility and authorization process, and cover any parent portion not paid by Wisconsin Shares.</p>
           <p style="margin-top:.9rem"><a href="#/contact">Ask us how to get started</a></p>
         </div>
@@ -1250,10 +1393,10 @@ html{color-scheme:light dark}
 
   <section class="band tint">
     <div class="wrap"><div class="cta-band">
-      <img class="bg" src="img/art-collage.jpg?v=3" alt="" aria-hidden="true" loading="lazy">
+      <img class="bg" src="img/art-collage.jpg?v=3" alt="" aria-hidden="true" loading="lazy" srcset="img/w480/art-collage.jpg?v=3 480w, img/art-collage.jpg?v=3 701w" sizes="100vw" width="701" height="1200" decoding="async">
       <div class="wash"></div>
       <div class="inner">
-        <h2>Want current rates for your child's age?</h2>
+        <h2 data-jump="Get rates" id="j-rates">Want current rates for your child's age?</h2>
         <p>Rates depend on age, days needed and drop-off and pickup times. Call and we will quote your family directly.</p>
         <div class="row">
           <a class="btn btn-gold" href="tel:+14147918637">Call 1 (414) 791-8637</a>
@@ -1267,7 +1410,7 @@ html{color-scheme:light dark}
 <!-- ========================= RESOURCES ========================= -->
 <section data-route="resources" hidden>
   <div class="banner">
-    <img class="bg" src="img/little-hands.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/little-hands.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/little-hands.jpg?v=3 480w, img/little-hands.jpg?v=3 910w" sizes="100vw" width="910" height="1200" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Parent resources</p>
@@ -1278,17 +1421,17 @@ html{color-scheme:light dark}
 
   <section class="band">
     <div class="wrap">
-      <div class="sec-head"><h2>Forms and documents</h2></div>
+      <div class="sec-head" data-jump="Forms" id="j-forms"><h2>Forms and documents</h2></div>
       <div class="res" id="res-list"></div>
       <div class="note" style="margin-top:20px"><b>Need a form now?</b> Call or text 1 (414) 791-8637 and we will send it to you, or pick up a paper copy at the front desk during open hours.</div>
     </div>
   </section>
 
 
-  <section class="band tint" id="drive">
+  <section class="band tint" id="drive" data-jump="Shared folder">
     <div class="wrap qr-split">
       <div class="qr-card">
-        <img src="img/drive-qr.png?v=1" alt="QR code that opens the ECU Google Drive folder" width="490" height="490">
+        <img src="img/drive-qr.png?v=1" alt="QR code that opens the ECU Google Drive folder" width="490" height="490" loading="lazy" decoding="async">
         <span class="qr-scan">Scan with your phone camera</span>
       </div>
       <div>
@@ -1310,20 +1453,20 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap split" style="align-items:center">
       <div>
-        <p class="eyebrow">After your visit</p>
+        <p class="eyebrow" data-jump="Tour feedback" id="j-feedback">After your visit</p>
         <h2>Tour feedback form</h2>
         <p class="lede" style="margin-top:.8rem">Families who tour ECU are asked to rate first impression, cleanliness, atmosphere, professionalism and communication. Your feedback is what keeps the center honest about how it is doing.</p>
         <p>Paper copies are at the front desk. You choose whether your comments stay private, are shared with your first name only, or are shared anonymously.</p>
       </div>
       <div class="matted" style="--mat:var(--coral)">
-        <img src="img/tour-form.jpg?v=3" alt="The ECU tour feedback form families complete after a visit" loading="lazy">
+        <img src="img/tour-form.jpg?v=3" alt="The ECU tour feedback form families complete after a visit" loading="lazy" srcset="img/w480/tour-form.jpg?v=3 480w, img/tour-form.jpg?v=3 800w" sizes="(max-width:860px) 100vw, 560px" width="800" height="1200" decoding="async">
       </div>
     </div>
   </section>
 
   <section class="band">
     <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">Parent FAQ</p><h2>Questions families ask</h2></div>
+      <div class="sec-head" data-jump="FAQ" id="j-faq"><p class="eyebrow">Parent FAQ</p><h2>Questions families ask</h2></div>
       <div class="faq">
         <details open><summary>What ages do you accept?</summary><div class="a"><p>ECU serves children from 4 weeks through 7 years old, subject to classroom availability.</p></div></details>
         <details><summary>What are your hours?</summary><div class="a"><p>ECU is open Monday through Friday from 6:00 AM to 12:00 AM, except scheduled holidays, closures or announced temporary schedule changes.</p></div></details>
@@ -1340,7 +1483,7 @@ html{color-scheme:light dark}
 <!-- ========================= GALLERY ========================= -->
 <section data-route="gallery" hidden>
   <div class="banner">
-    <img class="bg" src="img/art-collage.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/art-collage.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/art-collage.jpg?v=3 480w, img/art-collage.jpg?v=3 701w" sizes="100vw" width="701" height="1200" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Gallery</p>
@@ -1360,7 +1503,7 @@ html{color-scheme:light dark}
 <!-- ========================= TRANSPORTATION ========================= -->
 <section data-route="transportation" hidden>
   <div class="banner">
-    <img class="bg" src="img/storefront.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/storefront.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/storefront.jpg?v=3 480w, img/w960/storefront.jpg?v=3 960w, img/storefront.jpg?v=3 1200w" sizes="100vw" width="1200" height="766" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Transportation</p>
@@ -1395,7 +1538,7 @@ html{color-scheme:light dark}
 <!-- ========================= CAREERS ========================= -->
 <section data-route="careers" hidden>
   <div class="banner">
-    <img class="bg" src="img/dramatic-play.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/dramatic-play.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/dramatic-play.jpg?v=3 480w, img/w960/dramatic-play.jpg?v=3 960w, img/dramatic-play.jpg?v=3 1200w" sizes="100vw" width="1200" height="1008" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Careers</p>
@@ -1407,7 +1550,7 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap split" style="align-items:start">
       <div>
-        <h2>What we look for</h2>
+        <h2 data-jump="What we look for" id="j-look">What we look for</h2>
         <ul class="ticks" style="margin-top:1.1rem">
           <li>Genuine patience with young children</li>
           <li>Dependable attendance, including evening shifts</li>
@@ -1419,14 +1562,14 @@ html{color-scheme:light dark}
         <div class="note" style="margin-top:1.4rem"><b>Shifts available.</b> ECU runs 6:00 AM to 12:00 AM Monday through Friday, so there are openings for early morning, midday and evening availability.</div>
       </div>
       <div class="matted" style="--mat:var(--green)">
-        <img src="img/play-wall.jpg?v=4" alt="Framed letters spelling PLAY under the Essence sign: this is where the fun stuff happens" loading="lazy">
+        <img src="img/play-wall.jpg?v=4" alt="Framed letters spelling PLAY under the Essence sign: this is where the fun stuff happens" loading="lazy" srcset="img/w480/play-wall.jpg?v=4 480w, img/play-wall.jpg?v=4 900w" sizes="(max-width:860px) 100vw, 560px" width="900" height="1500" decoding="async">
       </div>
     </div>
   </section>
 
   <section class="band tint">
     <div class="wrap" style="max-width:840px">
-      <div class="sec-head"><h2>Apply to join our team</h2><p class="lede">Tell us about yourself and your availability. We contact applicants directly about open positions.</p></div>
+      <div class="sec-head" data-jump="Apply" id="j-apply"><h2>Apply to join our team</h2><p class="lede">Tell us about yourself and your availability. We contact applicants directly about open positions.</p></div>
       <div class="form-card"><div id="career-host"></div></div>
     </div>
   </section>
@@ -1435,7 +1578,7 @@ html{color-scheme:light dark}
 <!-- ========================= CONTACT ========================= -->
 <section data-route="contact" hidden>
   <div class="banner">
-    <img class="bg" src="img/storefront.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/storefront.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/storefront.jpg?v=3 480w, img/w960/storefront.jpg?v=3 960w, img/storefront.jpg?v=3 1200w" sizes="100vw" width="1200" height="766" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Contact</p>
@@ -1447,7 +1590,7 @@ html{color-scheme:light dark}
   <section class="band">
     <div class="wrap split" style="align-items:start">
       <div>
-        <h2>Reach us</h2>
+        <h2 data-jump="Call, text, visit" id="j-reach">Reach us</h2>
         <div class="contact-list" style="margin-top:1.2rem">
           <a class="cl" href="tel:+14147918637">
             <span class="ci" style="background:var(--coral-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#E24A1B" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
@@ -1467,7 +1610,7 @@ html{color-scheme:light dark}
           </a>
           <div class="cl">
             <span class="ci" style="background:var(--gold-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#E29C05" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <span><small>Hours</small><b>Monday to Friday, 6:00 AM to 12:00 AM</b></span>
+            <span><small>Hours</small><b>Monday to Friday, 6:00 AM to 12:00 AM</b><span class="open-now" data-open-now></span></span>
           </div>
           <a class="cl" href="https://www.instagram.com/essencechildcare" target="_blank" rel="noopener">
             <span class="ci" style="background:var(--magenta-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#D0136A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#D0136A" stroke="none"/></svg></span>
@@ -1478,11 +1621,11 @@ html{color-scheme:light dark}
           <a class="btn btn-primary" href="tel:+14147918637">Call Now</a>
           <a class="btn btn-outline" href="https://maps.google.com/?q=5644+W+Appleton+Ave+Milwaukee+WI+53210" target="_blank" rel="noopener">Get Directions</a>
         </div>
-        <div style="margin-top:1.6rem" class="matted"><img src="img/storefront.jpg?v=3" alt="Street view of the ECU storefront with its painted window signs" loading="lazy"></div>
+        <div style="margin-top:1.6rem" class="matted"><img src="img/storefront.jpg?v=3" alt="Street view of the ECU storefront with its painted window signs" loading="lazy" srcset="img/w480/storefront.jpg?v=3 480w, img/w960/storefront.jpg?v=3 960w, img/storefront.jpg?v=3 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="766" decoding="async"></div>
       </div>
 
       <div>
-        <h2>Schedule a tour</h2>
+        <h2 data-jump="Tour request" id="tour">Schedule a tour</h2>
         <p class="lede" style="margin:.6rem 0 1.2rem">Tell us a little about your family and we will call you back to set a time.</p>
         <div class="form-card"><div id="contact-host"></div></div>
       </div>
@@ -1493,7 +1636,7 @@ html{color-scheme:light dark}
 <!-- ========================= PRIVACY ========================= -->
 <section data-route="privacy" hidden>
   <div class="banner">
-    <img class="bg" src="img/preschool-room.jpg?v=3" alt="" aria-hidden="true">
+    <img class="bg" src="img/preschool-room.jpg?v=3" alt="" aria-hidden="true" srcset="img/w480/preschool-room.jpg?v=3 480w, img/w960/preschool-room.jpg?v=3 960w, img/preschool-room.jpg?v=3 1200w" sizes="100vw" width="1200" height="1067" loading="lazy" decoding="async">
     <div class="wash"></div>
     <div class="wrap inner">
       <p class="eyebrow">Legal</p>
@@ -1562,7 +1705,7 @@ html{color-scheme:light dark}
           <a href="https://www.instagram.com/essencechildcare" target="_blank" rel="noopener" aria-label="ECU on Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="tel:+14147918637" aria-label="Message ECU">
+          <a href="sms:+14147918637" aria-label="Text ECU">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
         </div>
@@ -1575,9 +1718,13 @@ html{color-scheme:light dark}
   </div>
 </footer>
 
+<button class="to-top" id="toTop" type="button" aria-label="Back to top" tabindex="-1">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <div class="callbar">
   <a class="c1" href="tel:+14147918637"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
-  <a class="c2" href="#/contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Tour</a>
+  <a class="c2" href="#/contact/tour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Tour</a>
   <a class="c3" href="#/enrollment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6"/></svg>Enroll</a>
 </div>
 
@@ -1636,21 +1783,46 @@ html{color-scheme:light dark}
 
   $("#yr").textContent = new Date().getFullYear();
 
+  /* responsive images: img/w480 and img/w960 hold smaller copies of each photo */
+  var IMGW = {"art-collage.jpg":701,"bath-ocean.jpg":624,"bath-space.jpg":808,"blocks.jpg":900,"chef-smile.jpg":1125,"dramatic-play.jpg":1200,"enrolling-flyer.jpg":894,"g-cubbies.jpg":1200,"infant-cribs.jpg":1200,"infant-nook.jpg":1500,"infant-room.jpg":1200,"infant-shelf.jpg":1500,"little-hands.jpg":910,"meal-breakfast.jpg":1200,"meal-pancakes.jpg":900,"meal-quesadilla.jpg":900,"meal-rice.jpg":900,"music-shelf.jpg":1500,"play-wall.jpg":900,"preschool-room.jpg":1200,"pretend-kitchen.jpg":1500,"sensory-table.jpg":1125,"snack-bagels.jpg":1500,"snack-yogurt.jpg":1125,"storefront.jpg":1200,"toddler-room.jpg":1200,"tour-form.jpg":800,"welcome-easel.jpg":675};
+  function rimg(attrs, sizes){
+    var m = /^img\/([a-z0-9-]+\.jpg)(\?v=\d+)?$/.exec(attrs.src || ""), w = m && IMGW[m[1]];
+    if(w){
+      var n = m[1], q = m[2] || "", set = ["img/w480/"+n+q+" 480w"];
+      if(w > 1104) set.push("img/w960/"+n+q+" 960w");
+      set.push(attrs.src+" "+w+"w");
+      attrs.srcset = set.join(", "); attrs.sizes = sizes;
+    }
+    /* loading must be set before src, or the browser starts the download straight away */
+    var img = document.createElement("img");
+    img.loading = attrs.loading || "lazy"; img.decoding = "async";
+    ["class","alt","sizes","srcset","src"].forEach(function(k){ if(attrs[k] != null) img.setAttribute(k, attrs[k]); });
+    return img;
+  }
+  var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function scrollToEl(node, block){
+    if(!node) return;
+    /* a scroll-reveal wrapper still offset by its entrance transform would make us land short */
+    var rv = node.closest(".rv");
+    if(rv && !rv.classList.contains("in")){ rv.style.transition = "none"; rv.classList.add("in"); }
+    node.scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block: block || "start"});
+  }
+
   /* ---------------- programs ---------------- */
   var PROGRAMS = [
-    { name:"Infant Program", age:"4 weeks to 18 months", c:"var(--teal)", soft:"var(--teal-soft)",
+    { name:"Infant Program", age:"4 weeks to 18 months", c:"var(--teal)", ink:"var(--teal-ink)", soft:"var(--teal-soft)",
       photo:"img/infant-cribs.jpg?v=3", alt:"The ECU infant room with cribs, floor mats and soft play equipment",
       body:"Our infant room provides nurturing, responsive care in a safe environment. Caregivers follow each baby's feeding, sleeping and diapering needs while also providing tummy time, sensory play, music, language exposure and opportunities for movement and bonding.",
       list:["Individual feeding and sleep schedules","Tummy time and sensory play","Safe sleep practices in every crib","Daily updates for parents"] },
-    { name:"Toddler Program", age:"18 months to 3 years", c:"var(--gold)", soft:"var(--gold-soft)",
+    { name:"Toddler Program", age:"18 months to 3 years", c:"var(--gold)", ink:"var(--gold-ink)", soft:"var(--gold-soft)",
       photo:"img/toddler-room.jpg?v=3", alt:"The ECU toddler room with a building table, instrument shelf and affirmation wall",
       body:"Toddlers are active learners. Our toddler program supports language, movement, independence and social-emotional development through hands-on play, music, art, books, sensory activities and simple routines.",
       list:["Pencil and crayon grip practice","Music, movement and instruments","Early language and picture books","First steps toward independence"] },
-    { name:"Preschool Program", age:"Ages 3 to 4", c:"var(--green)", soft:"var(--green-soft)",
+    { name:"Preschool Program", age:"Ages 3 to 4", c:"var(--green)", ink:"var(--green-ink)", soft:"var(--green-soft)",
       photo:"img/preschool-room.jpg?v=3", alt:"The ECU preschool room with learning charts, child-height tables and a reading corner",
       body:"Our preschool classroom helps children strengthen early learning skills through play-based activities. Children practice communication, early literacy, numbers, shapes, colors, fine-motor skills, problem-solving, sharing and following classroom routines.",
       list:["Early literacy and letter recognition","Numbers, shapes and colors","Sharing, turn-taking and routines","Kindergarten readiness"] },
-    { name:"School-Age Program", age:"Ages 5 to 7", c:"var(--magenta)", soft:"var(--magenta-soft)",
+    { name:"School-Age Program", age:"Ages 5 to 7", c:"var(--magenta)", ink:"var(--magenta-ink)", soft:"var(--magenta-soft)",
       photo:"img/dramatic-play.jpg?v=3", alt:"The ECU school-age area with activity tables, dress-up and the road rug",
       body:"Our school-age program provides a safe and engaging setting with opportunities for homework support, reading, creative projects, games, movement, social interaction and age-appropriate enrichment activities.",
       list:["Homework support after school","Reading and creative projects","Games and gross-motor play","Care right through the evening"] }
@@ -1661,9 +1833,9 @@ html{color-scheme:light dark}
     PROGRAMS.forEach(function(p){
       var c = el("article", {"class":"prog","style":"--c:"+p.c});
       c.appendChild(el("div", {"class":"prog-rail"}));
-      c.appendChild(el("img", {"class":"prog-photo","src":p.photo,"alt":p.alt,"loading":"lazy"}));
+      c.appendChild(rimg({"class":"prog-photo","src":p.photo,"alt":p.alt}, "(max-width:560px) 100vw, (max-width:1000px) 50vw, 290px"));
       var b = el("div", {"class":"prog-body"});
-      b.appendChild(el("span", {"class":"prog-age","style":"background:"+p.soft+";color:"+p.c}, esc(p.age)));
+      b.appendChild(el("span", {"class":"prog-age","style":"background:"+p.soft+";color:"+p.ink}, esc(p.age)));
       b.appendChild(el("h3", null, esc(p.name)));
       b.appendChild(el("p", null, esc(p.body.split(". ")[0] + ".")));
       c.appendChild(b);
@@ -1676,14 +1848,14 @@ html{color-scheme:light dark}
     PROGRAMS.forEach(function(p){
       var row = el("div", {"class":"prow"});
       var txt = el("div");
-      txt.appendChild(el("span", {"class":"badge","style":"background:"+p.soft+";color:"+p.c}, '<i></i>'+esc(p.age)));
+      txt.appendChild(el("span", {"class":"badge","style":"background:"+p.soft+";color:"+p.ink}, '<i></i>'+esc(p.age)));
       txt.appendChild(el("h2", null, esc(p.name)));
       txt.appendChild(el("p", {"class":"lede","style":"margin-top:.8rem"}, esc(p.body)));
       var ul = el("ul", {"class":"ticks","style":"margin-top:1.1rem"});
       p.list.forEach(function(i){ ul.appendChild(el("li", null, esc(i))); });
       txt.appendChild(ul);
       var pic = el("div", {"class":"pic matted","style":"--mat:"+p.c});
-      pic.appendChild(el("img", {"src":p.photo,"alt":p.alt,"loading":"lazy"}));
+      pic.appendChild(rimg({"src":p.photo,"alt":p.alt}, "(max-width:860px) 100vw, 560px"));
       row.appendChild(txt); row.appendChild(pic);
       progFull.appendChild(row);
     });
@@ -1751,7 +1923,7 @@ html{color-scheme:light dark}
   if(gal){
     GALLERY.forEach(function(g, i){
       var f = el("figure", {"tabindex":"0","role":"button","aria-label":"View photo: "+g[1],"data-i":i,"data-cat":g[2]});
-      f.appendChild(el("img", {"src":g[0],"alt":g[1],"loading": i < 6 ? "eager" : "lazy"}));
+      f.appendChild(rimg({"src":g[0],"alt":g[1]}, "(max-width:520px) 100vw, (max-width:900px) 50vw, 380px"));
       f.appendChild(el("figcaption", null, esc(g[1])));
       gal.appendChild(f);
     });
@@ -1784,13 +1956,13 @@ html{color-scheme:light dark}
   if(mos){
     MOSAIC.forEach(function(m){
       var a = el("a", {"href":"#/gallery","class":m[2],"aria-label":m[1]});
-      a.appendChild(el("img", {"src":m[0],"alt":m[1],"loading":"lazy"}));
+      a.appendChild(rimg({"src":m[0],"alt":m[1]}, m[2] ? "(max-width:820px) 100vw, 600px" : "(max-width:820px) 50vw, 300px"));
       mos.appendChild(a);
     });
   }
 
   /* lightbox */
-  var lb = null, lbIndex = 0;
+  var lb = null, lbIndex = 0, lbReturn = null;
   function visibleIdx(){
     return $$("figure", gal).filter(function(f){ return !f.hidden; }).map(function(f){ return +f.dataset.i; });
   }
@@ -1810,6 +1982,8 @@ html{color-scheme:light dark}
       lb.addEventListener("click", function(e){ if(e.target === lb) closeLB(); });
     }
     paint(); lb.style.display = "flex"; document.body.style.overflow = "hidden";
+    lbReturn = document.activeElement;
+    lb.querySelector(".lb-x").focus();
   }
   function paint(){
     var list = visibleIdx(), pos = list.indexOf(lbIndex) + 1;
@@ -1823,7 +1997,12 @@ html{color-scheme:light dark}
     lbIndex = list[(at + d + list.length) % list.length];
     paint();
   }
-  function closeLB(){ if(lb){ lb.style.display = "none"; document.body.style.overflow = ""; } }
+  function closeLB(){
+    if(!lb || lb.style.display !== "flex") return;
+    lb.style.display = "none"; document.body.style.overflow = "";
+    if(lbReturn && document.contains(lbReturn) && !lbReturn.closest("[hidden]")) lbReturn.focus();
+    lbReturn = null;
+  }
   if(gal){
     gal.addEventListener("click", function(e){
       var f = e.target.closest("figure"); if(f) openLB(+f.dataset.i);
@@ -1838,12 +2017,23 @@ html{color-scheme:light dark}
     if(e.key === "Escape") closeLB();
     if(e.key === "ArrowLeft") step(-1);
     if(e.key === "ArrowRight") step(1);
+    if(e.key === "Tab"){   /* keep keyboard focus inside the photo viewer */
+      var bs = $$("button", lb), first = bs[0], last = bs[bs.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      else if(bs.indexOf(document.activeElement) < 0){ e.preventDefault(); first.focus(); }
+    }
   });
 
   /* ---------------- forms ---------------- */
   function buildForm(host, spec){
     if(!host) return;
     var form = el("form", {"class":"ecu","novalidate":"novalidate","id":spec.id});
+    if(!WIRED){
+      form.appendChild(el("p", {"class":"unwired","id":spec.id+"-unwired"},
+        "<b>Before you start:</b> this form is not connected to the center yet, so it cannot send on its own. "+
+        "Fill it in and press the button. We will then open a text to "+esc(ECU.phone)+" or an email to the center with your answers already typed in, ready for you to send."));
+    }
     spec.rows.forEach(function(row){
       var wrapRow = row.length > 1 ? el("div",{"class":"f-row"}) : null;
       row.forEach(function(f){
@@ -1873,10 +2063,13 @@ html{color-scheme:light dark}
             input = el("input", {"id":id,"name":f.name,"type":f.type||"text","placeholder":f.ph||"",
               "autocomplete":f.ac||"on","inputmode":f.im||null});
           }
-          if(f.required) input.setAttribute("data-required","1");
+          if(f.required){ input.setAttribute("data-required","1"); input.setAttribute("aria-required","true"); }
           node.appendChild(input);
-          if(f.hint) node.appendChild(el("p", {"class":"hint"}, esc(f.hint)));
-          node.appendChild(el("p", {"class":"err","hidden":"hidden"}, ""));
+          var desc = [];
+          if(f.hint){ node.appendChild(el("p", {"class":"hint","id":id+"-hint"}, esc(f.hint))); desc.push(id+"-hint"); }
+          node.appendChild(el("p", {"class":"err","id":id+"-err","hidden":"hidden"}, ""));
+          desc.push(id+"-err");
+          input.setAttribute("aria-describedby", desc.join(" "));
         }
         (wrapRow || form).appendChild(node);
       });
@@ -1890,8 +2083,38 @@ html{color-scheme:light dark}
     var submitBtn = el("button", {"class":"btn btn-primary","type":"submit","style":"justify-self:start"}, spec.submit);
     form.appendChild(submitBtn);
 
-    var done = el("div", {"class":"done","hidden":"hidden"});
+    var done = el("div", {"class":"done","hidden":"hidden","aria-live":"polite"});
     host.appendChild(form); host.appendChild(done);
+
+    /* draft: what a parent types is kept in this browser tab only (sessionStorage),
+       so a reload or a wrong tap does not wipe a half-finished form. Cleared on Start over. */
+    var DKEY = "ecu-draft-" + spec.id;
+    function fieldsOf(){ return $$("input,select,textarea", form).filter(function(i){ return i.name && i.type !== "file"; }); }
+    function saveDraft(){
+      var d = {}, any = false;
+      fieldsOf().forEach(function(i){
+        if(i.type === "radio"){ if(i.checked){ d[i.name] = i.value; any = true; } }
+        else if(i.value){ d[i.name] = i.value; any = true; }
+      });
+      try{ if(any) sessionStorage.setItem(DKEY, JSON.stringify(d)); else sessionStorage.removeItem(DKEY); }catch(e){}
+    }
+    function clearDraft(){ try{ sessionStorage.removeItem(DKEY); }catch(e){} }
+    form.addEventListener("input", saveDraft);
+    form.addEventListener("change", saveDraft);
+    (function restore(){
+      var d = null;
+      try{ d = JSON.parse(sessionStorage.getItem(DKEY) || "null"); }catch(e){}
+      if(!d) return;
+      fieldsOf().forEach(function(i){
+        if(!(i.name in d)) return;
+        if(i.type === "radio") i.checked = (i.value === d[i.name]); else i.value = d[i.name];
+      });
+      var note = el("p", {"class":"draft-note"}, "We kept what you typed earlier in this tab. ");
+      var clr = el("button", {"type":"button"}, "Clear the form");
+      clr.addEventListener("click", function(){ form.reset(); clearDraft(); note.remove(); });
+      note.appendChild(clr);
+      form.insertBefore(note, submitBtn);
+    })();
 
     form.addEventListener("submit", function(e){
       e.preventDefault();
@@ -1918,9 +2141,10 @@ html{color-scheme:light dark}
 
       var labelOf = {};
       spec.rows.forEach(function(r){ r.forEach(function(f){ labelOf[f.name] = f.label; }); });
-      var lines = [spec.title, "Submitted " + new Date().toLocaleString(), ""];
-      Object.keys(data).forEach(function(k){ lines.push((labelOf[k] || k) + ": " + data[k]); });
-      var summary = lines.join("\n");
+      var stamp = new Date().toLocaleString([], {dateStyle:"medium", timeStyle:"short"});
+      var body = Object.keys(data).map(function(k){ return (labelOf[k] || k) + ": " + data[k]; });
+      var summary = [spec.title, (WIRED ? "Submitted " : "Prepared ") + stamp, ""].concat(body).join("\n");
+      var textBody = ["Hi ECU, I filled this in on your website.", spec.title, ""].concat(body).join("\n");
 
       function finish(delivered){
         done.className = delivered ? "done" : "done undelivered";
@@ -1935,16 +2159,34 @@ html{color-scheme:light dark}
             ? spec.confirm
             : "Your details are ready below, but nothing has been sent to the center yet. Call or text us at "+ECU.phone+", or copy your details and send them over. Someone answers from 6 AM until midnight, Monday through Friday.")+'</p>'+
           '<pre>'+esc(summary)+'</pre>'+
-          '<div class="row">'+
-            '<a class="btn btn-primary" href="tel:'+ECU.phoneTel+'">Call '+ECU.phone+'</a>'+
-            '<a class="btn btn-teal" href="sms:'+ECU.mobileTel+'">Text the same number</a>'+
-            (ECU.email ? '<a class="btn btn-outline" href="mailto:'+ECU.email+'?subject='+encodeURIComponent(spec.title)+'&body='+encodeURIComponent(summary)+'">Email it to us</a>' : '')+
-            '<button class="btn btn-outline" type="button" data-copy>Copy my details</button>'+
-            '<button class="btn btn-outline" type="button" data-again>Start over</button>'+
-          '</div>';
+          (delivered
+            ? '<div class="row">'+
+                '<a class="btn btn-primary" href="tel:'+ECU.phoneTel+'">Call '+ECU.phone+'</a>'+
+                '<a class="btn btn-teal" href="sms:'+ECU.mobileTel+'">Text the same number</a>'+
+                (ECU.email ? '<a class="btn btn-outline" href="mailto:'+ECU.email+'?subject='+encodeURIComponent(spec.title)+'&body='+encodeURIComponent(summary)+'">Email it to us</a>' : '')+
+                '<button class="btn btn-outline" type="button" data-copy>Copy my details</button>'+
+                '<button class="btn btn-outline" type="button" data-again>Start over</button>'+
+              '</div>'
+            : '<p class="how">Text and email open on your device with your answers already filled in. Nothing reaches the center until you press send there.</p>'+
+              '<div class="row">'+ sendButtons() +
+                '<button class="btn btn-outline" type="button" data-copy>Copy my details</button>'+
+                '<button class="btn btn-outline" type="button" data-edit>Edit my answers</button>'+
+                '<button class="btn btn-outline" type="button" data-again>Start over</button>'+
+              '</div>');
         form.hidden = true; done.hidden = false;
-        done.scrollIntoView({behavior:"smooth", block:"center"});
+        var h = $("h3", done); h.setAttribute("tabindex","-1");
+        scrollToEl(done, "center");
+        h.focus({preventScroll:true});
         wireDoneButtons();
+      }
+
+      /* one-tap ways to send the same answers. sms "?&body=" fills the message on both iPhone and Android. */
+      function sendButtons(){
+        var touch = window.matchMedia && matchMedia("(pointer:coarse)").matches;
+        var sms  = '<a class="btn '+(touch ? "btn-primary" : "btn-teal")+'" href="sms:'+ECU.mobileTel+'?&body='+encodeURIComponent(textBody)+'">Text my answers to '+esc(ECU.phone)+'</a>';
+        var mail = ECU.email ? '<a class="btn '+(touch ? "btn-teal" : "btn-primary")+'" href="mailto:'+ECU.email+'?subject='+encodeURIComponent(spec.title)+'&body='+encodeURIComponent(summary)+'">Email my answers</a>' : '';
+        var call = '<a class="btn btn-outline" href="tel:'+ECU.phoneTel+'">Call '+esc(ECU.phone)+'</a>';
+        return touch ? sms + mail + call : mail + sms + call;
       }
 
       if(WIRED){
@@ -1979,11 +2221,19 @@ html{color-scheme:light dark}
           navigator.clipboard.writeText(summary).then(ok, fallback);
         } else { fallback(); }
       });
+      var edit = $("[data-edit]", done);
+      if(edit) edit.addEventListener("click", function(){
+        form.hidden = false; done.hidden = true;
+        scrollToEl(form, "start");
+        var first = $("input,select,textarea", form); if(first) first.focus({preventScroll:true});
+      });
       $("[data-again]", done).addEventListener("click", function(){
-        form.reset(); form.hidden = false; done.hidden = true;
+        form.reset(); clearDraft(); form.hidden = false; done.hidden = true;
+        var dn = $(".draft-note", form); if(dn) dn.remove();
         $$(".err", form).forEach(function(n){ n.hidden = true; });
         $$("[aria-invalid]", form).forEach(function(n){ n.removeAttribute("aria-invalid"); });
-        form.scrollIntoView({behavior:"smooth", block:"center"});
+        scrollToEl(form, "start");
+        var first = $("input,select,textarea", form); if(first) first.focus({preventScroll:true});
       });
       }
     });
@@ -2059,27 +2309,38 @@ html{color-scheme:light dark}
     if(!mainnav) return;
     mainnav.classList.remove("open");
     burger.setAttribute("aria-expanded","false");
+    burger.setAttribute("aria-label","Open menu");
   }
   burger.addEventListener("click", function(){
     var open = mainnav.classList.toggle("open");
     burger.setAttribute("aria-expanded", open ? "true" : "false");
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   });
   document.addEventListener("click", function(e){
     if(!mainnav.classList.contains("open")) return;
     if(!e.target.closest("nav.main") && !e.target.closest("#burger")) closeNav();
   });
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeNav(); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && mainnav.classList.contains("open")){ closeNav(); burger.focus(); }
+  });
 
   /* ---------------- router ---------------- */
   var ROUTES = ["home","about","programs","enrollment","tuition","resources","gallery","transportation","careers","contact","privacy"];
   var sections = {};
   $$("[data-route]").forEach(function(s){ sections[s.dataset.route] = s; });
 
-  function routeName(){
-    var h = (location.hash || "#/").replace(/^#\/?/, "").replace(/\/$/, "").toLowerCase();
-    return ROUTES.indexOf(h) > -1 ? h : "home";
+  /* hashes look like #/contact or #/contact/tour (page, then a spot on that page).
+     A plain anchor such as #main is not a page: it must not send people back to Home. */
+  function parseHash(){
+    var raw = location.hash || "#/";
+    if(raw.charAt(1) !== "/" && raw !== "#") return null;
+    var parts = raw.replace(/^#\/?/, "").replace(/\/$/, "").toLowerCase().split("/");
+    return { page: ROUTES.indexOf(parts[0]) > -1 ? parts[0] : "home", spot: parts[1] || "" };
   }
+  function routeName(){ var p = parseHash(); return p ? p.page : current; }
+  var current = "home";
   function show(name, scroll){
+    current = name;
     ROUTES.forEach(function(r){ if(sections[r]) sections[r].hidden = (r !== name); });
     $$("nav.main a").forEach(function(a){
       var t = a.getAttribute("href").replace(/^#\/?/, "") || "home";
@@ -2092,10 +2353,150 @@ html{color-scheme:light dark}
     };
     document.title = name === "home" ? titles.home : titles[name] + " | Essence of Childcare University";
     closeNav(); closeLB();
-    if(scroll) window.scrollTo(0, 0);
+    buildJump(name);
+    var p = parseHash(), spot = p && p.spot ? document.getElementById(p.spot) : null;
+    if(spot && !spot.closest("[hidden]")){
+      requestAnimationFrame(function(){ scrollToEl(spot, "start"); });
+    } else if(scroll) window.scrollTo(0, 0);
+    if(scroll){
+      /* move keyboard and screen reader focus to the new page's heading */
+      var target = spot || $("h1", sections[name]);
+      if(target){ if(!target.hasAttribute("tabindex")) target.setAttribute("tabindex","-1"); target.focus({preventScroll:true}); }
+    }
   }
-  window.addEventListener("hashchange", function(){ show(routeName(), true); });
+  window.addEventListener("hashchange", function(){
+    var p = parseHash();
+    if(!p) return;                 // plain in-page anchor: stay on this page
+    if(p.page === current && p.spot){
+      var t = document.getElementById(p.spot);
+      if(t){ scrollToEl(t, "start"); if(!t.hasAttribute("tabindex")) t.setAttribute("tabindex","-1"); t.focus({preventScroll:true}); return; }
+    }
+    show(p.page, true);
+  });
+
+  /* tapping a link to the page (or spot) you are already on still does something:
+     the browser fires no hashchange for an unchanged hash, so handle it here */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#/"]');
+    if(!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if(a.getAttribute("href") !== location.hash && !(a.getAttribute("href") === "#/" && !location.hash)) return;
+    e.preventDefault(); closeNav();
+    var p = parseHash(), t = p && p.spot ? document.getElementById(p.spot) : null;
+    if(t) scrollToEl(t, "start"); else window.scrollTo({top:0, behavior: reduceMotion ? "auto" : "smooth"});
+  });
+
+  /* skip link: focus the current page's main content without changing the page */
+  var skip = $(".skip");
+  if(skip) skip.addEventListener("click", function(e){
+    e.preventDefault();
+    var h = $("h1", sections[current]) || $("#main");
+    if(!h.hasAttribute("tabindex")) h.setAttribute("tabindex","-1");
+    h.focus(); scrollToEl(h, "center");
+  });
+
+  /* ---------------- page jump bar (phones and tablets) ---------------- */
+  var jumpbar = $("#jumpbar"), jumpState = null, header = $("header.site");
+  /* highlight the chip for the section under the bars, and keep that chip in view */
+  function markJump(){
+    if(!jumpState) return;
+    var line = (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--hdr-h"), 10) || 76) + 90, idx = -1;
+    jumpState.targets.forEach(function(t, i){ if(t.getBoundingClientRect().top <= line) idx = i; });
+    if(idx === jumpState.last) return;
+    jumpState.last = idx;
+    jumpState.links.forEach(function(l, j){ if(j === idx) l.setAttribute("aria-current","true"); else l.removeAttribute("aria-current"); });
+    var a = jumpState.links[idx], list = jumpState.list;
+    if(a){
+      var box = list.getBoundingClientRect(), r = a.getBoundingClientRect();
+      if(r.left < box.left + 60 || r.right > box.right - 14) list.scrollLeft += (r.left - box.left) - 70;
+    } else list.scrollLeft = 0;
+  }
+  function setBars(){
+    var hh = header ? header.offsetHeight : 76;
+    document.documentElement.style.setProperty("--hdr-h", hh + "px");
+    var jh = (jumpbar && !jumpbar.hidden && jumpbar.offsetHeight) || 0;   /* height is measured even while slid away */
+    document.documentElement.style.setProperty("--jump-h", jh + "px");
+  }
+  function buildJump(name){
+    if(!jumpbar) return;
+    var list = $("ol", jumpbar), targets = $$("[data-jump]", sections[name]);
+    jumpState = null;
+    list.innerHTML = "";
+    document.body.classList.toggle("has-jump", targets.length >= 2);
+    if(targets.length < 2){ jumpbar.hidden = true; setBars(); return; }
+    var topLi = el("li"), topBtn = el("button", {"type":"button","class":"jb-top","aria-label":"Back to top"},
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Top');
+    topBtn.addEventListener("click", goTop);
+    topLi.appendChild(topBtn); list.appendChild(topLi);
+    targets.forEach(function(t){
+      var a = el("a", {"href":"#/" + (name === "home" ? "home" : name) + "/" + t.id}, esc(t.getAttribute("data-jump")));
+      var li = el("li"); li.appendChild(a); list.appendChild(li);
+    });
+    jumpbar.hidden = false; setBars();
+    list.onclick = function(e){
+      var a = e.target.closest("a"); if(!a) return;
+      var t = document.getElementById(a.getAttribute("href").split("/").pop());
+      if(!t) return;
+      e.preventDefault();
+      scrollToEl(t, "start");
+      if(!t.hasAttribute("tabindex")) t.setAttribute("tabindex","-1");
+      t.focus({preventScroll:true});
+      try{ history.replaceState(null, "", a.getAttribute("href")); }catch(err){}
+    };
+    jumpState = {targets:targets, links:$$("a", list), list:list, last:-1};
+    markJump();
+  }
+  window.addEventListener("resize", setBars);
+
+  /* ---------------- back to top ---------------- */
+  function goTop(){
+    window.scrollTo({top:0, behavior: reduceMotion ? "auto" : "smooth"});
+    var h = $("h1", sections[current]);
+    if(h){ if(!h.hasAttribute("tabindex")) h.setAttribute("tabindex","-1"); h.focus({preventScroll:true}); }
+  }
+  var toTop = $("#toTop");
+  if(toTop){
+    var ticking = false;
+    window.addEventListener("scroll", function(){
+      if(ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var on = window.scrollY > innerHeight * 1.5;
+        toTop.classList.toggle("show", on);
+        toTop.tabIndex = on ? 0 : -1;
+        if(jumpbar) jumpbar.classList.toggle("on", window.scrollY > Math.min(420, innerHeight * .5));
+        markJump();
+        ticking = false;
+      });
+    }, {passive:true});
+    toTop.addEventListener("click", goTop);
+  }
+
+  /* ---------------- open-now status ----------------
+     Regular weekly hours only (Mon to Fri, 6:00 AM to 12:00 AM, Milwaukee time).
+     It cannot know about holidays or announced closures, so it says "regular hours". */
+  function openStatus(){
+    var now;
+    try{
+      var parts = new Intl.DateTimeFormat("en-US", {timeZone:"America/Chicago", weekday:"short", hour:"numeric", hour12:false}).formatToParts(new Date());
+      now = {}; parts.forEach(function(p){ now[p.type] = p.value; });
+    }catch(e){ return null; }
+    var day = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(now.weekday), hr = parseInt(now.hour, 10) % 24;
+    if(day < 0 || isNaN(hr)) return null;
+    if(day >= 1 && day <= 5) return hr >= 6 ? {open:true, text:"Open now until 12 AM"} : {open:false, text:"Closed now. Opens at 6 AM"};
+    return {open:false, text:"Closed weekends. Opens Monday 6 AM"};
+  }
+  function paintOpen(){
+    var st = openStatus();
+    $$("[data-open-now]").forEach(function(n){
+      if(!st){ n.classList.remove("ready"); return; }
+      n.innerHTML = '<i aria-hidden="true"></i>' + esc(st.text) + '<span class="reg"> (regular hours)</span>';
+      n.title = "Based on regular hours. Holidays and announced closures are not shown here.";
+      n.classList.toggle("closed", !st.open); n.classList.add("ready");
+    });
+  }
+  paintOpen(); setInterval(paintOpen, 60000);
+
   show(routeName(), false);
+  setBars();
 })();
 
   /* scroll reveal */

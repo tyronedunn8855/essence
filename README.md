@@ -95,8 +95,15 @@ HTTPS is issued automatically, usually within a few minutes.
 Everything is in `index.html`. Real text, no CMS, no templating.
 Search for the words you see on the site and change them in place.
 
-Photos live in `img/`. Replacing a file with the same name swaps it
-everywhere it appears.
+Photos live in `img/`. Phones load the smaller copies in `img/w480/` and
+`img/w960/` (same file names), so when you replace a photo, replace its small
+copies too. On a Mac:
+
+    sips --resampleWidth 480 img/NAME.jpg --out img/w480/NAME.jpg
+    sips --resampleWidth 960 img/NAME.jpg --out img/w960/NAME.jpg
+
+(only make the 960 copy if the original is wider than about 1100 px), then
+bump the `?v=` number on that photo in `index.html` so browsers fetch the new one.
 
 The page titles per section and the structured data block near the bottom
 (`application/ld+json`) carry the business name, address, hours and phone
