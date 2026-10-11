@@ -3,4 +3,4 @@ Allow: /
 Disallow: /console
 Disallow: /admin
 
-Sitemap: https://essencechildcare.vercel.app/sitemap.xml
+Sitemap: https://www.essencechildcare.com/sitemap.xml
