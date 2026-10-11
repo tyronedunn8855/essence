@@ -2197,6 +2197,8 @@ footer.site h4{font-size:.78rem}
       var textBody = ["Hi ECU, I filled this in on your website.", spec.title, ""].concat(body).join("\n");
 
       function finish(delivered){
+        /* only say "Submitted" when the inbox took it */
+        summary = [spec.title, (delivered ? "Submitted " : "Prepared ") + stamp, ""].concat(body).join("\n");
         done.className = delivered ? "done" : "done undelivered";
         done.innerHTML =
           '<h3><span class="chk">'+
