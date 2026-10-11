@@ -3,8 +3,18 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/admin",
+      "destination": "/console",
+      "permanent": false
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/console",
+      "permanent": false
+    },
+    {
       "source": "/staff",
-      "destination": "https://essence-console.vercel.app",
+      "destination": "/console",
       "permanent": false
     }
   ],
@@ -47,6 +57,16 @@
           "value": "geolocation=(), microphone=(), camera=()"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/console",
+      "destination": "https://essence-console.vercel.app/console"
+    },
+    {
+      "source": "/console/:path*",
+      "destination": "https://essence-console.vercel.app/console/:path*"
     }
   ]
 }
